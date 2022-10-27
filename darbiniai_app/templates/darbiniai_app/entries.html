@@ -1,0 +1,18 @@
+{% extends 'darbiniai_app/base.html' %}
+
+{% block content %}
+
+<p>Leaderboard: {{leaderboard}}</p>
+
+<p>Entries:</p>
+<ul>
+{% for entry in entries %}
+    <li>
+        <p>{{ entry.username }}: {{entry.score}}</p>
+    </li>
+{% empty %}
+    <li>There are no entries for this leaderboard yet.</li>
+{% endfor %}
+</ul>
+
+{% endblock content %}

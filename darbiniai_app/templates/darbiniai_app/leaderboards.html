@@ -1,0 +1,17 @@
+{% extends "darbiniai_app/base.html" %}
+
+{% block content %}
+
+    <p>Leaderboards</p>
+
+    <ul>
+        {% for leaderboard in leaderboards %}
+            <li>
+                <a href="{% url 'darbiniai_app:entries' leaderboard.gameName %}">{{ leaderboard }}</a>
+            </li>
+        {% empty %}
+            <li>No leaderboards have been added yet.</li>
+        {% endfor %}   
+    </ul>
+
+{% endblock content %}
