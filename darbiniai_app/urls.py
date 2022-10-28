@@ -15,6 +15,9 @@ urlpatterns = [
 
     # (by internet, with an API)
     path('api/leaderboards/', views.leaderboard_list),
-    path('api/leaderboards/<str:gameName>/', views.leaderboard_detail),
+    #path('api/leaderboard/<str:gameName>/', views.leaderboard_detail), # useless
+
+    path('api/entries/', views.entry_list),
+    #path('api/entry/<str:gameName>/', views.leaderboard_detail), # useless
 
 ]

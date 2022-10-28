@@ -4,8 +4,8 @@ from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
 from rest_framework import status
  
-from darbiniai_app.models import Leaderboard
-from darbiniai_app.serializers import LeaderboardSerializer
+from darbiniai_app.models import Leaderboard, Entry
+from darbiniai_app.serializers import LeaderboardSerializer, EntrySerializer
 from rest_framework.decorators import api_view
 
 # Create your views here.
@@ -33,12 +33,15 @@ def entries(request, gameName):
 
 # API
 
+#Leaderboards
+
 @api_view(['GET', 'POST', 'DELETE'])
 def leaderboard_list(request):
     # GET list of leaderboards, POST a new leaderboard, DELETE all leaderboards
     if request.method == 'GET':
         leaderboards = Leaderboard.objects.all()
         
+        #possibility to sort by name (if it contains a string specified (leaderboards/gameName=<string>))
         gameName = request.GET.get('gameName', None)
         if gameName is not None:
             leaderboards = leaderboards.filter(gameName__icontains=gameName)
@@ -57,30 +60,72 @@ def leaderboard_list(request):
         return JsonResponse(leaderboard_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
  
     elif request.method == 'DELETE':
-        count = Leaderboard.objects.all().delete()
+
+        leaderboards = Leaderboard.objects.all()
+        
+        gameName = request.GET.get('gameName', None)
+        if gameName is not None:
+            leaderboards = leaderboards.filter(gameName__icontains=gameName)
+
+        count = leaderboards.all().delete()
         return JsonResponse({'message': '{} Leaderboards were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
 
- 
-@api_view(['GET', 'PUT', 'DELETE'])
-def leaderboard_detail(request, gameName):
-    # find leaderboard by pk (gameName)
-    try: 
-        leaderboard = Leaderboard.objects.get(gameName=gameName) 
-        if request.method == 'GET': 
-            leaderboard_serializer = LeaderboardSerializer(leaderboard) 
-            return JsonResponse(leaderboard_serializer.data) 
+# CURRENTLY USELESS
+# @api_view(['GET', 'PUT', 'DELETE'])
+# def leaderboard_detail(request, gameName):
+#     # find leaderboard by pk (gameName)
+#     try: 
+#         leaderboard = Leaderboard.objects.get(gameName=gameName) 
+#         if request.method == 'GET': 
+#             leaderboard_serializer = LeaderboardSerializer(leaderboard) 
+#             return JsonResponse(leaderboard_serializer.data) 
 
-        elif request.method == 'PUT': 
-            leaderboard_data = JSONParser().parse(request) 
-            leaderboard_serializer = LeaderboardSerializer(leaderboard, data=leaderboard_data) 
-            if leaderboard_serializer.is_valid(): 
-                leaderboard_serializer.save() 
-                return JsonResponse(leaderboard_serializer.data) 
-            return JsonResponse(leaderboard_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+#         elif request.method == 'PUT': 
+#             leaderboard_data = JSONParser().parse(request) 
+#             leaderboard_serializer = LeaderboardSerializer(leaderboard, data=leaderboard_data) 
+#             if leaderboard_serializer.is_valid(): 
+#                 leaderboard_serializer.save() 
+#                 return JsonResponse(leaderboard_serializer.data) 
+#             return JsonResponse(leaderboard_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
         
-        elif request.method == 'DELETE': 
-            leaderboard.delete() 
-            return JsonResponse({'message': 'Leaderboard was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+#         elif request.method == 'DELETE': 
+#             leaderboard.delete() 
+#             return JsonResponse({'message': 'Leaderboard was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
 
-    except Leaderboard.DoesNotExist: 
-        return JsonResponse({'message': 'The leaderboard does not exist'}, status=status.HTTP_404_NOT_FOUND) 
+#     except Leaderboard.DoesNotExist: 
+#         return JsonResponse({'message': 'The leaderboard does not exist'}, status=status.HTTP_404_NOT_FOUND) 
+
+# Entries
+
+@api_view(['GET', 'POST', 'DELETE'])
+def entry_list(request):
+    # GET list of entries, POST a new entry, DELETE all entries
+    if request.method == 'GET':
+        entries = Entry.objects.all()
+        
+        username = request.GET.get('username', None)
+        if username is not None:
+            entries = entries.filter(username__icontains=username)
+        
+        entry_serializer = EntrySerializer(entries, many=True)
+        return JsonResponse(entry_serializer.data, safe=False)
+        # 'safe=False' for objects serialization
+
+
+    elif request.method == 'POST':
+        entry_data = JSONParser().parse(request)
+        entry_serializer = EntrySerializer(data=entry_data)
+        if entry_serializer.is_valid():
+            entry_serializer.save()
+            return JsonResponse(entry_serializer.data, status=status.HTTP_201_CREATED) 
+        return JsonResponse(entry_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+ 
+    elif request.method == 'DELETE':
+
+        entries = Entry.objects.all()
+        username = request.GET.get('username', None)
+        if username is not None:
+            entries = entries.filter(username__icontains=username)
+
+        count = entries.all().delete()
+        return JsonResponse({'message': '{} Entries were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
