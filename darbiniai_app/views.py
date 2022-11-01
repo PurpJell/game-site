@@ -129,3 +129,7 @@ def entry_list(request):
 
         count = entries.all().delete()
         return JsonResponse({'message': '{} Entries were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
+
+
+
+        #tetstest
