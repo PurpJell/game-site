@@ -13,6 +13,8 @@ urlpatterns = [
     path('leaderboards/', views.leaderboards, name='leaderboards'),
     path('entries/<str:gameName>/', views.entries, name='entries'),
 
+    path('new_leaderboard/', views.new_leaderboard, name='new_leaderboard'),
+
     # (by internet, with an API)
     path('api/leaderboards/', views.leaderboard_list),
     #path('api/leaderboard/<str:gameName>/', views.leaderboard_detail), # useless

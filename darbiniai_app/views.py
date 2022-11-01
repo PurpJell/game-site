@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import LeaderboardForm
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
@@ -30,6 +31,20 @@ def entries(request, gameName):
     context = {'leaderboard': leaderboard, 'entries': entries}
     return render(request, 'darbiniai_app/entries.html', context)
 
+def new_leaderboard(request):
+    """Add a new leadeerboard"""
+    if request.method != 'POST':
+        # no data submitted; create a blank form.
+        form = LeaderboardForm()
+    else:
+        # POST data submitted; process data.
+        form = LeaderboardForm(data = request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('darbiniai_app:leaderboards')
+
+    context = {'form': form}
+    return render(request, 'darbiniai_app/new_leaderboard.html', context)
 
 # API
 
@@ -129,7 +144,3 @@ def entry_list(request):
 
         count = entries.all().delete()
         return JsonResponse({'message': '{} Entries were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
-
-
-
-        #tetstest

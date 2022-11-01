@@ -1,0 +1,12 @@
+{% extends "darbiniai_app/base.html" %}
+
+{% block content %}
+    <p>Add new leaderboard:</p>
+
+    <form action="{% url 'darbiniai_app:new_leaderboard' %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Add leaderboard</button>
+    </form>
+
+{% endblock content %}
