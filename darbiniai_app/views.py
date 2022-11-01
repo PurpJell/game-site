@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import LeaderboardForm
+from .forms import LeaderboardForm, EntryForm
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
@@ -45,6 +45,28 @@ def new_leaderboard(request):
 
     context = {'form': form}
     return render(request, 'darbiniai_app/new_leaderboard.html', context)
+
+def new_entry(request, gameName):
+    """Add a new entry to a specified leaderboard"""
+    leaderboard = Leaderboard.objects.get(gameName = gameName)
+
+    if request.method != 'POST':
+        #No data submitted; create blank form.
+        form = EntryForm()
+    else:
+        #POST data submitted; process data.
+        form = EntryForm(data = request.POST)
+        if form.is_valid():
+            new_entry = form.save(commit=False)
+            new_entry.LB = leaderboard
+            new_entry.save()
+            return redirect('darbiniai_app:entries', gameName = gameName)
+
+    #Display blank or invalid form.
+    context = {'leaderboard': leaderboard, 'form': form}
+    return render(request, 'darbiniai_app/new_entry.html', context)
+
+
 
 # API
 
