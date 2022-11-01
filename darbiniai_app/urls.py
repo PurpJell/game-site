@@ -15,6 +15,7 @@ urlpatterns = [
 
     path('new_leaderboard/', views.new_leaderboard, name='new_leaderboard'),
     path('new_entry/<str:gameName>/', views.new_entry, name='new_entry'),
+    path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
 
     # (by internet, with an API)
     path('api/leaderboards/', views.leaderboard_list),

@@ -66,6 +66,24 @@ def new_entry(request, gameName):
     context = {'leaderboard': leaderboard, 'form': form}
     return render(request, 'darbiniai_app/new_entry.html', context)
 
+def edit_entry(request, entry_id):
+    """Edit an existing entry"""
+    entry = Entry.objects.get(id=entry_id)
+    leaderboard = entry.LB
+
+    if request.method != 'POST':
+        #Initial request; pre-fill form with the current entry.
+        form = EntryForm(instance=entry)
+    else:
+        #POST data submitted; process data.
+        form = EntryForm(instance=entry, data = request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('darbiniai_app:entries', gameName = leaderboard.gameName)
+
+    context = {'entry':entry, 'leaderboard': leaderboard, 'form': form}
+    return render(request, 'darbiniai_app/edit_entry.html', context)
+
 
 
 # API
