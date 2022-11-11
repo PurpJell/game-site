@@ -14,6 +14,7 @@ class EntrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Entry
         fields = ('LB',
+                  'owner',
                   'username',
                   'score',
                   'date_added',)

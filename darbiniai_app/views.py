@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import LeaderboardForm, EntryForm
 
+from django.contrib.auth.decorators import login_required
+
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
 from rest_framework import status
@@ -31,6 +33,19 @@ def entries(request, gameName):
     context = {'leaderboard': leaderboard, 'entries': entries}
     return render(request, 'darbiniai_app/entries.html', context)
 
+@login_required
+def my_entries(request):
+    """show a logged in user's every entry"""
+    leaderboards = Leaderboard.objects.all()
+    myEntries = list()
+    for leaderboard in leaderboards:
+        entries = leaderboard.entry_set.filter(owner=request.user)
+        for entry in entries:
+            myEntries.append(entry)
+    context = {'leaderboard': leaderboard, 'myEntries': myEntries, 'username':request.user}
+    return render(request, 'darbiniai_app/my_entries.html', context)
+
+@login_required
 def new_leaderboard(request):
     """Add a new leadeerboard"""
     if request.method != 'POST':
@@ -46,6 +61,7 @@ def new_leaderboard(request):
     context = {'form': form}
     return render(request, 'darbiniai_app/new_leaderboard.html', context)
 
+@login_required
 def new_entry(request, gameName):
     """Add a new entry to a specified leaderboard"""
     leaderboard = Leaderboard.objects.get(gameName = gameName)
@@ -66,6 +82,7 @@ def new_entry(request, gameName):
     context = {'leaderboard': leaderboard, 'form': form}
     return render(request, 'darbiniai_app/new_entry.html', context)
 
+@login_required
 def edit_entry(request, entry_id):
     """Edit an existing entry"""
     entry = Entry.objects.get(id=entry_id)
