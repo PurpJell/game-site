@@ -1,6 +1,12 @@
 <p>
     <a href="{% url 'darbiniai_app:index' %}">Home</a> -
-    <a href="{% url 'darbiniai_app:leaderboards' %}">Leaderboards</a>
+    <a href="{% url 'darbiniai_app:leaderboards' %}">Leaderboards</a> -
+    {% if user.is_authenticated %}
+        Hello, {{ user.username }}
+        <a href="{% url 'users:logout' %}">Log out</a>
+    {% else  %}
+        <a href="{% url 'users:login' %}">Log in</a>
+    {% endif %}
 </p>
 
 {%block content%}{% endblock content %}

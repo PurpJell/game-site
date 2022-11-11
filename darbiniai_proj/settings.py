@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
     #darbiniai
     'darbiniai_app',
+    'users',
     'rest_framework',
 
 
