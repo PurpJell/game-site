@@ -18,7 +18,7 @@ class LBEntryForm(forms.ModelForm):
             fields = [
                 'score',
             ]
-            labels = {'username': 'Username','score':'Score'}
+            labels = {'score':'Score'}
 
 class MEEntryForm(forms.ModelForm):
         class Meta:
@@ -27,4 +27,4 @@ class MEEntryForm(forms.ModelForm):
                 'LB',
                 'score',
             ]
-            labels = {'username': 'Username','score':'Score'}
+            labels = {'LB':'Leaderboard', 'score':'Score'}

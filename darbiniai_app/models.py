@@ -14,10 +14,12 @@ class Leaderboard(models.Model):
 
 class Entry(models.Model):
 
+    # id is PK
+
     LB = models.ForeignKey(Leaderboard, on_delete=models.CASCADE) # FK - gameName
     
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    username = models.CharField(max_length=20) # PK
+    #username = models.CharField(max_length=20) #the same as owner
     score = models.IntegerField()
     date_added = models.DateTimeField(auto_now_add=True) # when an entry to the leaderboard was added
 
