@@ -6,15 +6,15 @@
 
 <p>Entries:</p>
 <p>
-    <a href="{% url 'darbiniai_app:new_entry' leaderboard.gameName %}">Add new entry</a>
+    <a href="{% url 'darbiniai_app:MEnew_entry' %}">Add new entry</a>
 </p>
 
 <ul>
     {% for entry in myEntries %}
         <li>
-            <p>{{ entry.LB.gameName }}: {{entry.score}}</p>
             <p>
-                <a href="{% url 'darbiniai_app:edit_entry' entry.id %}">Edit entry</a>
+                {{ entry.LB.gameName }}: {{entry.score}}
+                <a href="{% url 'darbiniai_app:edit_entry' entry.id %}"> Edit entry</a>
             </p>
         </li>
     {% empty %}

@@ -6,7 +6,7 @@
 
     <p>Add new entry:</p>
 
-    <form action="{% url 'darbiniai_app:new_entry' leaderboard.gameName %}" method='post'>
+    <form action="{% url 'darbiniai_app:LBnew_entry' leaderboard.gameName %}" method='post'>
         {% csrf_token %}
         {{ form.as_p }}
         <button name="submit">Add entry</button>

@@ -12,11 +12,19 @@ class LeaderboardForm(forms.ModelForm):
             labels = {'gameName': 'Game'}
 
 
-class EntryForm(forms.ModelForm):
+class LBEntryForm(forms.ModelForm):
         class Meta:
             model = Entry
             fields = [
-                'username',
+                'score',
+            ]
+            labels = {'username': 'Username','score':'Score'}
+
+class MEEntryForm(forms.ModelForm):
+        class Meta:
+            model = Entry
+            fields = [
+                'LB',
                 'score',
             ]
             labels = {'username': 'Username','score':'Score'}

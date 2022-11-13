@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from .forms import LeaderboardForm, EntryForm
+from .forms import LeaderboardForm, LBEntryForm, MEEntryForm
 
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
@@ -61,42 +62,75 @@ def new_leaderboard(request):
     context = {'form': form}
     return render(request, 'darbiniai_app/new_leaderboard.html', context)
 
+# from leaderboards/ 
 @login_required
-def new_entry(request, gameName):
-    """Add a new entry to a specified leaderboard"""
+def LBnew_entry(request, gameName):
+    """Add a new entry to a specified leaderboard from leaderboards/"""
     leaderboard = Leaderboard.objects.get(gameName = gameName)
 
     if request.method != 'POST':
         #No data submitted; create blank form.
-        form = EntryForm()
+        form = LBEntryForm()
     else:
         #POST data submitted; process data.
-        form = EntryForm(data = request.POST)
+        form = LBEntryForm(data = request.POST)
         if form.is_valid():
             new_entry = form.save(commit=False)
             new_entry.LB = leaderboard
+            new_entry.owner = request.user
             new_entry.save()
             return redirect('darbiniai_app:entries', gameName = gameName)
 
     #Display blank or invalid form.
     context = {'leaderboard': leaderboard, 'form': form}
-    return render(request, 'darbiniai_app/new_entry.html', context)
+    return render(request, 'darbiniai_app/LBnew_entry.html', context)
+
+@login_required
+def MEnew_entry(request):
+    """Add a new entry to a leaderboard from my_entries/"""
+
+    if request.method != 'POST':
+        #No data submitted; create blank form.
+        form = MEEntryForm()
+    else:
+        #POST data submitted; process data.
+        form = MEEntryForm(data = request.POST)
+        if form.is_valid():
+
+            new_entry = form.save(commit=False)
+            new_entry.owner = request.user
+            new_entry.save()
+            return redirect('darbiniai_app:my_entries')
+
+    #Display blank or invalid form.
+    context = {'form': form}
+    return render(request, 'darbiniai_app/MEnew_entry.html', context)
 
 @login_required
 def edit_entry(request, entry_id):
     """Edit an existing entry"""
     entry = Entry.objects.get(id=entry_id)
+
+    if entry.owner != request.user:
+        raise Http404
+
     leaderboard = entry.LB
 
     if request.method != 'POST':
         #Initial request; pre-fill form with the current entry.
-        form = EntryForm(instance=entry)
+        form = LBEntryForm(instance=entry)
     else:
         #POST data submitted; process data.
-        form = EntryForm(instance=entry, data = request.POST)
+        form = LBEntryForm(instance=entry, data = request.POST)
         if form.is_valid():
             form.save()
-            return redirect('darbiniai_app:entries', gameName = leaderboard.gameName)
+
+            site = 'leaderboards'
+
+            if site == 'leaderboards':
+                return redirect('darbiniai_app:entries', gameName = leaderboard.gameName)
+            elif site == 'my_entries':
+                return redirect('darbiniai_app:my_entries')
 
     context = {'entry':entry, 'leaderboard': leaderboard, 'form': form}
     return render(request, 'darbiniai_app/edit_entry.html', context)

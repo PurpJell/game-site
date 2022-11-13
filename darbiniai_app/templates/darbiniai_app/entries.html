@@ -6,16 +6,17 @@
 
 <p>Entries:</p>
 <p>
-    <a href="{% url 'darbiniai_app:new_entry' leaderboard.gameName %}">Add new entry</a>
+    <a href="{% url 'darbiniai_app:LBnew_entry' leaderboard.gameName %}">Add new entry</a>
 </p>
 
 <ul>
 {% for entry in entries %}
     <li>
-        <p>{{ entry.username }}: {{entry.score}}</p>
-        <p>
-            <a href="{% url 'darbiniai_app:edit_entry' entry.id %}">Edit entry</a>
+        <p>{{ entry.owner}}: {{entry.score}}
+        {% if user == entry.owner %}
+            <a href="{% url 'darbiniai_app:edit_entry' entry.id %}"> Edit entry</a>
         </p>
+        {% endif %}
     </li>
 {% empty %}
     <li>There are no entries for this leaderboard yet.</li>

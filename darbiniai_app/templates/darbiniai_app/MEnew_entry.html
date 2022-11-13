@@ -1,0 +1,13 @@
+{% extends "darbiniai_app/base.html" %}
+
+{% block content %}
+
+    <p>Add new entry:</p>
+
+    <form action="{% url 'darbiniai_app:MEnew_entry' %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Add entry</button>
+    </form>
+
+{% endblock content %}
