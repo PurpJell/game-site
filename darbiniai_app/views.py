@@ -40,7 +40,7 @@ def my_entries(request):
     leaderboards = Leaderboard.objects.all()
     myEntries = list()
     for leaderboard in leaderboards:
-        entries = leaderboard.entry_set.filter(owner=request.user)
+        entries = leaderboard.entry_set.filter(owner=request.user).order_by('-score')
         for entry in entries:
             myEntries.append(entry)
     context = {'leaderboard': leaderboard, 'myEntries': myEntries, 'username':request.user}
@@ -125,15 +125,30 @@ def edit_entry(request, entry_id):
         if form.is_valid():
             form.save()
 
-            site = 'leaderboards'
-
-            if site == 'leaderboards':
-                return redirect('darbiniai_app:entries', gameName = leaderboard.gameName)
-            elif site == 'my_entries':
-                return redirect('darbiniai_app:my_entries')
+            return redirect('darbiniai_app:entries', gameName = leaderboard.gameName)
 
     context = {'entry':entry, 'leaderboard': leaderboard, 'form': form}
     return render(request, 'darbiniai_app/edit_entry.html', context)
+
+@login_required
+def account(request):
+
+    user = request.user
+
+    if request.method == 'GET':
+
+        context = {'user':user, 'request':request}
+        return render(request, 'darbiniai_app/account.html', context)
+
+    elif request.method == 'POST':
+        user.delete()
+        return redirect('darbiniai_app:index')
+
+    else:
+        raise Http404
+
+    
+
 
 
 
