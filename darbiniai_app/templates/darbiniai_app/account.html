@@ -3,11 +3,17 @@
 {% block content %}
 
     <p>Hello, {{ user.username }}!</p>
-    
-    <form action="{% url 'darbiniai_app:account' %}" method='post'>
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button name="submit">Delete account</button>
+
+    <form action="{% url 'darbiniai_app:change_username' %}" method='get'>
+        <button type="submit">Change username</button>
+    </form>
+
+    <form action="{% url 'darbiniai_app:change_password' %}" method='get'>
+        <button type="submit">Change password</button>
+    </form>
+
+    <form action="{% url 'darbiniai_app:delete_account' %}" method='get'>
+        <button type="submit">Delete account</button>
     </form>
 
 {% endblock content %}

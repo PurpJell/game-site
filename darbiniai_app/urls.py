@@ -20,6 +20,11 @@ urlpatterns = [
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
 
     path('account/', views.account, name='account'),
+    path('account/change_username/', views.change_username, name='change_username'),
+    path('account/change_password/', views.change_password, name='change_password'),
+    path('account/delete_account/', views.delete_account, name='delete_account'),
+    path('account_deleted/', views.account_deleted, name='account_deleted'),
+
 
     # (by internet, with an API)
     path('api/leaderboards/', views.leaderboard_list),

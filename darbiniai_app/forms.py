@@ -2,6 +2,7 @@ from socket import fromshare
 from django import forms
 
 from .models import Leaderboard, Entry
+from django.contrib.auth.models import User
 
 class LeaderboardForm(forms.ModelForm):
         class Meta:
@@ -28,3 +29,11 @@ class MEEntryForm(forms.ModelForm):
                 'score',
             ]
             labels = {'LB':'Leaderboard', 'score':'Score'}
+
+class changeUsernameForm(forms.ModelForm):
+        class Meta:
+            model = User
+            fields = [
+                'username'
+            ]
+            labels = {'username':'Username'}

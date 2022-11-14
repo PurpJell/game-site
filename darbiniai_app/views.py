@@ -3,6 +3,9 @@ from .forms import LeaderboardForm, LBEntryForm, MEEntryForm
 
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
+from django.contrib.auth.models import User
+from .forms import changeUsernameForm
+from django.contrib.auth.forms import PasswordChangeForm as changePasswordForm
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
@@ -140,16 +143,73 @@ def account(request):
         context = {'user':user, 'request':request}
         return render(request, 'darbiniai_app/account.html', context)
 
-    elif request.method == 'POST':
-        user.delete()
-        return redirect('darbiniai_app:index')
-
     else:
         raise Http404
 
-    
+@login_required
+def change_username(request):
+
+    user = request.user
+
+    if request.method != 'POST':
+
+        form = changeUsernameForm()
+
+    else:
+
+        form = changeUsernameForm(instance = user, data = request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect('darbiniai_app:account')
+
+    context = {'user':user, 'form': form}
+    return render(request, 'darbiniai_app/change_username.html', context)
 
 
+@login_required
+def change_password(request):
+
+    user = request.user
+
+    if request.method != 'POST':
+
+        form = changePasswordForm(user=user)
+
+    else:
+
+        form = changePasswordForm(user=user, data = request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect('darbiniai_app:account')
+
+    context = {'user':user, 'form': form}
+    return render(request, 'darbiniai_app/change_password.html', context)
+        
+@login_required
+def delete_account(request):
+
+    user = request.user
+
+    if request.method == 'GET':
+
+        context = {'user':user}
+        return render(request, 'darbiniai_app/delete_account.html', context)
+
+    elif request.method == 'POST':
+
+        request.user.delete()
+
+        return redirect('darbiniai_app:account_deleted')
+
+def account_deleted(request):
+
+    if request.method == 'GET':
+
+        return render(request, 'darbiniai_app/account_deleted.html')
 
 
 # API
