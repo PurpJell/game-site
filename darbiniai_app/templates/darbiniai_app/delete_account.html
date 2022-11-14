@@ -1,0 +1,18 @@
+{% extends "darbiniai_app/base.html" %}
+
+{% block content %}
+
+    <p>Delete account {{ user.username }}? (All of your entries will be lost forever)!</p>
+
+    <form action="{% url 'darbiniai_app:delete_account' %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Confirm</button>
+    </form>
+    
+    <form action="{% url 'darbiniai_app:account' %}" method='get'>
+        <button type="submit">Return</button>
+    </form>
+
+
+{% endblock content %}

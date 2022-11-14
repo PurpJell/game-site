@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
     #darbiniai
     'darbiniai_app',
+    'users',
     'rest_framework',
 
 
@@ -141,3 +142,6 @@ REST_FRAMEWORK = {
         #'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+# My settings
+LOGIN_URL = 'users:login'

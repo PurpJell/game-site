@@ -12,10 +12,19 @@ urlpatterns = [
     # leaderboards (by django book)
     path('leaderboards/', views.leaderboards, name='leaderboards'),
     path('entries/<str:gameName>/', views.entries, name='entries'),
+    path('my_entries/', views.my_entries, name='my_entries'),
 
     path('new_leaderboard/', views.new_leaderboard, name='new_leaderboard'),
-    path('new_entry/<str:gameName>/', views.new_entry, name='new_entry'),
+    path('LBnew_entry/<str:gameName>/', views.LBnew_entry, name='LBnew_entry'),
+    path('MEnew_entry/', views.MEnew_entry, name='MEnew_entry'),
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
+
+    path('account/', views.account, name='account'),
+    path('account/change_username/', views.change_username, name='change_username'),
+    path('account/change_password/', views.change_password, name='change_password'),
+    path('account/delete_account/', views.delete_account, name='delete_account'),
+    path('account_deleted/', views.account_deleted, name='account_deleted'),
+
 
     # (by internet, with an API)
     path('api/leaderboards/', views.leaderboard_list),

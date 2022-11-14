@@ -1,0 +1,25 @@
+{% extends 'darbiniai_app/base.html' %}
+
+{% block content %}
+
+<p>User: {{username}}</p>
+
+<p>Entries:</p>
+<p>
+    <a href="{% url 'darbiniai_app:MEnew_entry' %}">Add new entry</a>
+</p>
+
+<ul>
+    {% for entry in myEntries %}
+        <li>
+            <p>
+                {{ entry.LB.gameName }}: {{entry.score}}
+                <a href="{% url 'darbiniai_app:edit_entry' entry.id %}"> Edit entry</a>
+            </p>
+        </li>
+    {% empty %}
+        <li>There are no entries for this user yet.</li>
+    {% endfor %}
+    </ul>
+    
+{% endblock content %}

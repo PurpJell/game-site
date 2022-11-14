@@ -1,0 +1,14 @@
+{% extends "darbiniai_app/base.html" %}
+
+{% block content %}
+
+    <p>Change username for {{ user.username }}:</p>
+
+    <form action="{% url 'darbiniai_app:change_username' %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Change username</button>
+    </form>
+
+
+{% endblock content %}
