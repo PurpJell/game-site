@@ -5,6 +5,8 @@
         Hello, {{ user.username }} -
         <a href="{% url 'darbiniai_app:my_entries' %}">My entries</a> - 
         <a href="{% url 'darbiniai_app:account' %}">Account</a> - 
+        <a href="{% url 'darbiniai_app:media' %}">Game gallery</a> - 
+
         <a href="{% url 'users:logout' %}">Log out</a>
     {% else  %}
         <a href="{% url 'users:register' %}">Register</a> -
