@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import LeaderboardForm, LBEntryForm, MEEntryForm
+from .forms import LeaderboardForm, LBEntryForm, MEEntryForm, GameForm
 
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
@@ -11,7 +11,7 @@ from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
 from rest_framework import status
  
-from darbiniai_app.models import Leaderboard, Entry
+from darbiniai_app.models import Leaderboard, Entry, Game
 from darbiniai_app.serializers import LeaderboardSerializer, EntrySerializer
 from rest_framework.decorators import api_view
 
@@ -210,6 +210,34 @@ def account_deleted(request):
     if request.method == 'GET':
 
         return render(request, 'darbiniai_app/account_deleted.html')
+
+# Files
+def media (request):
+    if request.method == 'GET':
+
+        games = Game.objects.all()
+
+        images = list()
+        
+        for game in games :
+            images.append(game.icon)
+
+        context = {"images" : images}
+        return render (request, 'darbiniai_app/media.html')
+
+
+def gallery (request):
+    if request.method == 'POST':
+        form = GameForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return render (request, 'darbiniai_app/index.html' )
+    else:
+        form = GameForm()
+
+    context = {"form": form}
+    return render(request, 'darbiniai_app/gallery.html', context)
 
 
 # API

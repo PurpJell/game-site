@@ -28,3 +28,14 @@ class Entry(models.Model):
 
     def __str__(self):
         return self.username
+
+
+class Game(models.Model):
+    title = models.CharField(max_length=100) #game name??
+    # file = models.FileField(upload_to='media', max_length=1000)
+    icon = models.ImageField(upload_to = 'media/', default = None)
+
+    def __str__(self):
+        return self.title
+
+    

@@ -25,7 +25,6 @@ urlpatterns = [
     path('account/delete_account/', views.delete_account, name='delete_account'),
     path('account_deleted/', views.account_deleted, name='account_deleted'),
 
-
     # (by internet, with an API)
     path('api/leaderboards/', views.leaderboard_list),
     #path('api/leaderboard/<str:gameName>/', views.leaderboard_detail), # useless
@@ -33,4 +32,8 @@ urlpatterns = [
     path('api/entries/', views.entry_list),
     #path('api/entry/<str:gameName>/', views.leaderboard_detail), # useless
 
-]
+    #Files 
+    path ('media/', views.media, name = 'media'),
+    path ('gallery/', views.gallery, name = 'gallery'),
+
+] 

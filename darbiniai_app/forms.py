@@ -1,7 +1,7 @@
 from socket import fromshare
 from django import forms
 
-from .models import Leaderboard, Entry
+from .models import Leaderboard, Entry, Game
 from django.contrib.auth.models import User
 
 class LeaderboardForm(forms.ModelForm):
@@ -37,3 +37,12 @@ class changeUsernameForm(forms.ModelForm):
                 'username'
             ]
             labels = {'username':'Username'}
+
+class GameForm (forms.ModelForm):
+
+    class Meta:
+        model = Game
+        fields = [
+            'icon'
+        ]
+        labels = {'icon':'Game icon'}
