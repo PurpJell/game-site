@@ -1,4 +1,4 @@
-from socket import fromshare
+# from socket import fromshare
 from django import forms
 
 from .models import Leaderboard, Entry, Game
