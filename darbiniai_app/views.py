@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import LeaderboardForm, LBEntryForm, MEEntryForm, GameForm
 
 from django.contrib.auth.decorators import login_required
@@ -32,7 +32,7 @@ def leaderboards(request):
 
 def entries(request, gameName):
     """show a single leaderboard and all its entries"""
-    leaderboard = Leaderboard.objects.get(gameName = gameName)
+    leaderboard = get_object_or_404(Leaderboard, gameName = gameName)
     entries = leaderboard.entry_set.order_by('-score')
     context = {'leaderboard': leaderboard, 'entries': entries}
     return render(request, 'darbiniai_app/entries.html', context)
