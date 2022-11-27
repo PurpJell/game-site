@@ -34,7 +34,7 @@ class changeUsernameForm(forms.ModelForm):
         class Meta:
             model = User
             fields = [
-                'username'
+                'username',
             ]
             labels = {'username':'Username'}
 
@@ -43,6 +43,7 @@ class GameForm (forms.ModelForm):
     class Meta:
         model = Game
         fields = [
-            'icon'
+            'title',
+            'icon',
         ]
-        labels = {'icon':'Game icon'}
+        labels = {'title':'Game title', 'icon':'Game icon'}
