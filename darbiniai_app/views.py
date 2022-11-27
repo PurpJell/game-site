@@ -221,7 +221,7 @@ def account_deleted(request):
         return render(request, 'darbiniai_app/account_deleted.html')
 
 # Files
-def media (request):
+def media (request): # DOESNT WORK
     if request.method == 'GET':
 
         games = Game.objects.all()
@@ -232,7 +232,7 @@ def media (request):
             images.append(game.icon)
 
         context = {"images" : images}
-        return render (request, 'darbiniai_app/media.html')
+        return render (request, 'darbiniai_app/media.html', context)
 
 
 def gallery (request):
