@@ -69,7 +69,7 @@ def new_leaderboard(request):
 @login_required
 def LBnew_entry(request, gameName):
     """Add a new entry to a specified leaderboard from leaderboards/"""
-    leaderboard = Leaderboard.objects.get(gameName = gameName)
+    leaderboard = get_object_or_404(Leaderboard, gameName = gameName)
 
     if request.method != 'POST':
         #No data submitted; create blank form.
@@ -112,7 +112,7 @@ def MEnew_entry(request):
 @login_required
 def edit_entry(request, entry_id):
     """Edit an existing entry"""
-    entry = Entry.objects.get(id=entry_id)
+    entry = get_object_or_404(Entry, id=entry_id)
 
     if entry.owner != request.user:
         raise Http404
@@ -133,6 +133,7 @@ def edit_entry(request, entry_id):
     context = {'entry':entry, 'leaderboard': leaderboard, 'form': form}
     return render(request, 'darbiniai_app/edit_entry.html', context)
 
+# Account
 @login_required
 def account(request):
 
