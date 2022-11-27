@@ -42,11 +42,19 @@ def my_entries(request):
     """show a logged in user's every entry"""
     leaderboards = Leaderboard.objects.all()
     myEntries = list()
-    for leaderboard in leaderboards:
-        entries = leaderboard.entry_set.filter(owner=request.user).order_by('-score')
-        for entry in entries:
-            myEntries.append(entry)
+
+    if leaderboards: # if there are leaderboards in the DB
+
+        for leaderboard in leaderboards:
+            entries = leaderboard.entry_set.filter(owner=request.user).order_by('-score')
+            for entry in entries:
+                myEntries.append(entry)
+
+    else:
+        leaderboard = None
+
     context = {'leaderboard': leaderboard, 'myEntries': myEntries, 'username':request.user}
+
     return render(request, 'darbiniai_app/my_entries.html', context)
 
 @login_required
