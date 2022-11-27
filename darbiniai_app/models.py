@@ -27,7 +27,7 @@ class Entry(models.Model):
         verbose_name_plural = "entries"
 
     def __str__(self):
-        return self.username
+        return self.owner.username
 
 
 class Game(models.Model):

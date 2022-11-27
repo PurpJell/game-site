@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import LeaderboardForm, LBEntryForm, MEEntryForm, GameForm
 
 from django.contrib.auth.decorators import login_required
@@ -32,7 +32,7 @@ def leaderboards(request):
 
 def entries(request, gameName):
     """show a single leaderboard and all its entries"""
-    leaderboard = Leaderboard.objects.get(gameName = gameName)
+    leaderboard = get_object_or_404(Leaderboard, gameName = gameName)
     entries = leaderboard.entry_set.order_by('-score')
     context = {'leaderboard': leaderboard, 'entries': entries}
     return render(request, 'darbiniai_app/entries.html', context)
@@ -42,11 +42,19 @@ def my_entries(request):
     """show a logged in user's every entry"""
     leaderboards = Leaderboard.objects.all()
     myEntries = list()
-    for leaderboard in leaderboards:
-        entries = leaderboard.entry_set.filter(owner=request.user).order_by('-score')
-        for entry in entries:
-            myEntries.append(entry)
+
+    if leaderboards: # if there are leaderboards in the DB
+
+        for leaderboard in leaderboards:
+            entries = leaderboard.entry_set.filter(owner=request.user).order_by('-score')
+            for entry in entries:
+                myEntries.append(entry)
+
+    else:
+        leaderboard = None
+
     context = {'leaderboard': leaderboard, 'myEntries': myEntries, 'username':request.user}
+
     return render(request, 'darbiniai_app/my_entries.html', context)
 
 @login_required
@@ -69,7 +77,7 @@ def new_leaderboard(request):
 @login_required
 def LBnew_entry(request, gameName):
     """Add a new entry to a specified leaderboard from leaderboards/"""
-    leaderboard = Leaderboard.objects.get(gameName = gameName)
+    leaderboard = get_object_or_404(Leaderboard, gameName = gameName)
 
     if request.method != 'POST':
         #No data submitted; create blank form.
@@ -112,7 +120,7 @@ def MEnew_entry(request):
 @login_required
 def edit_entry(request, entry_id):
     """Edit an existing entry"""
-    entry = Entry.objects.get(id=entry_id)
+    entry = get_object_or_404(Entry, id=entry_id)
 
     if entry.owner != request.user:
         raise Http404
@@ -133,6 +141,7 @@ def edit_entry(request, entry_id):
     context = {'entry':entry, 'leaderboard': leaderboard, 'form': form}
     return render(request, 'darbiniai_app/edit_entry.html', context)
 
+# Account
 @login_required
 def account(request):
 
