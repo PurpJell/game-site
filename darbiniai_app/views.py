@@ -221,7 +221,7 @@ def account_deleted(request):
         return render(request, 'darbiniai_app/account_deleted.html')
 
 # Files
-def media (request):
+def library (request):
     if request.method == 'GET':
 
         games = Game.objects.all()
@@ -232,21 +232,21 @@ def media (request):
             images.append(game.icon)
 
         context = {"images" : images}
-        return render (request, 'darbiniai_app/media.html')
+        return render (request, 'darbiniai_app/library.html')
 
 
-def gallery (request):
+def add_game (request):
     if request.method == 'POST':
         form = GameForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
-            return render (request, 'darbiniai_app/index.html' )
+            return render (request, 'darbiniai_app/media.html' )
     else:
         form = GameForm()
 
     context = {"form": form}
-    return render(request, 'darbiniai_app/gallery.html', context)
+    return render(request, 'darbiniai_app/add_game.html', context)
 
 
 # API

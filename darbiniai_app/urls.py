@@ -33,7 +33,7 @@ urlpatterns = [
     #path('api/entry/<str:gameName>/', views.leaderboard_detail), # useless
 
     #Files 
-    path ('media/', views.media, name = 'media'),
-    path ('gallery/', views.gallery, name = 'gallery'),
+    path ('library/', views.library, name = 'library'),
+    path ('add_game/', views.add_game, name = 'add_game'),
 
 ] 
