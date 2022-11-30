@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-e#0b+s-b^c5s)*+rzkyym$!sp(imcl6co4aezzia=eh-=$*$*b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -63,7 +63,8 @@ ROOT_URLCONF = 'darbiniai_proj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        # 'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': []
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,22 +125,21 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Files
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-STATIC_ROOT = BASE_DIR / '/static/'
-
+#cia kaip suprantu turetu but musu media failu path kur vyks perdavimas ir saugojimas failu - Renaldas
 MEDIA_ROOT = BASE_DIR / '/media/'
-
 MEDIA_URL = '/media/'
 
-#cia kaip suprantu turetu but musu media failu path kur vyks perdavimas ir saugojimas failu
 #https://www.codewithharry.com/videos/python-django-tutorials-hindi-28/
 #https://stackoverflow.com/questions/72291351/whats-the-difference-between-media-root-base-dir-media-and-media-root-o
 
