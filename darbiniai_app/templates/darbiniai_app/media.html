@@ -8,8 +8,8 @@
     {% for image in images %}
         <li>
            <a>{{ image }}</a>
-           {% load static %}
-            <img src="{% static 'darbiniai_app/image.jpg' %}" alt="Image name">
+           <!-- {% load static %}
+            <img src="{% static 'darbiniai_app/image.jpg' %}" alt="Image name"> -->
         </li>
     {% empty %}
         <li>No files have been added yet.</li>
