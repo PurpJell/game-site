@@ -232,7 +232,7 @@ def library (request):
             images.append(game.icon)
 
         context = {"images" : images}
-        return render (request, 'darbiniai_app/library.html')
+        return render (request, 'darbiniai_app/library.html', context)
 
 
 def add_game (request):
