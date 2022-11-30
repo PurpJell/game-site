@@ -241,7 +241,7 @@ def add_game (request):
 
         if form.is_valid():
             form.save()
-            return render (request, 'darbiniai_app/media.html' )
+            return render (request, 'darbiniai_app/library.html' )
     else:
         form = GameForm()
 
