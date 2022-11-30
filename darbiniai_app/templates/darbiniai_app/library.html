@@ -1,0 +1,19 @@
+{% extends "darbiniai_app/base.html" %}
+
+{% block content %}
+
+<p>Media:</p>
+
+<a href="{% url 'darbiniai_app:add_game' %}">Add a game</a>
+
+<ul>
+    {% for image in images %}
+        <li>
+           <a>{{ image }}</a>
+        </li>
+    {% empty %}
+        <li>No files have been added yet.</li>
+    {% endfor %}   
+</ul>
+
+{% endblock content %}
