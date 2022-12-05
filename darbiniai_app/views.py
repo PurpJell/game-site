@@ -226,12 +226,7 @@ def library (request):
 
         games = Game.objects.all()
 
-        images = list()
-        
-        for game in games :
-            images.append(game.icon)
-
-        context = {"images" : images}
+        context = {"games" : games}
         return render (request, 'darbiniai_app/library.html', context)
 
 

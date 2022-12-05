@@ -7,9 +7,9 @@
 <a href="{% url 'darbiniai_app:add_game' %}">Add a game</a>
 
 <ul>
-    {% for image in images %}
+    {% for game in games %}
         <li>
-           <a>{{ image }}</a>
+           <a>{{ game.title }} - - - {{ game.icon }}</a>
         </li>
     {% empty %}
         <li>No files have been added yet.</li>
