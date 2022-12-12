@@ -13,7 +13,7 @@
 {% for entry in entries %}
     <li>
         <p>{{ entry.owner}}: {{entry.score}}
-        {% if user == entry.owner %}
+        {% if user == entry.owner or user.is_superuser or user.is_admin %}
             <a href="{% url 'darbiniai_app:edit_entry' entry.id %}"> Edit entry</a>
         </p>
         {% endif %}

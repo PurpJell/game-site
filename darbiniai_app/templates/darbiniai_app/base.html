@@ -2,9 +2,8 @@
     <a href="{% url 'darbiniai_app:index' %}">Home</a> -
     <a href="{% url 'darbiniai_app:leaderboards' %}">Leaderboards</a> -
     {% if user.is_authenticated %}
-        Hello, {{ user.username }} -
         <a href="{% url 'darbiniai_app:my_entries' %}">My entries</a> - 
-        <a href="{% url 'darbiniai_app:account' %}">Account</a> - 
+        <a href="{% url 'darbiniai_app:account' %}">{{ user.username }}</a> - 
         <a href="{% url 'darbiniai_app:library' %}">Game library</a> - 
 
         {% if user.is_superuser or user.is_admin %}

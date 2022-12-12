@@ -128,7 +128,7 @@ def edit_entry(request, entry_id):
     """Edit an existing entry"""
     entry = get_object_or_404(Entry, id=entry_id)
 
-    if entry.owner != request.user:
+    if entry.owner != request.user and not request.user.is_superuser and not request.user.is_admin:
         raise Http404
 
     leaderboard = entry.LB
