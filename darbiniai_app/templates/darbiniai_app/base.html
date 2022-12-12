@@ -7,6 +7,10 @@
         <a href="{% url 'darbiniai_app:account' %}">Account</a> - 
         <a href="{% url 'darbiniai_app:library' %}">Game library</a> - 
 
+        {% if user.is_superuser or user.is_admin %}
+            <a href="{% url 'darbiniai_app:admin:index' %}">Admin site</a> - 
+        {% endif %}
+
         <a href="{% url 'users:logout' %}">Log out</a>
     {% else  %}
         <a href="{% url 'users:register' %}">Register</a> -

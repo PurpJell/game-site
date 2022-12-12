@@ -1,8 +1,12 @@
 """Defines URL patterns for darbiniai_app"""
 
-from django.urls import path
+from django.urls import path, reverse_lazy
 
 from . import views
+from django.views.generic.base import RedirectView
+
+
+from django.contrib import admin
 
 app_name = 'darbiniai_app'
 
@@ -10,6 +14,10 @@ app_name = 'darbiniai_app'
 urlpatterns = [
     # Home page
     path('', views.index, name = 'index'),
+
+    # admin
+    path('', RedirectView.as_view(url=reverse_lazy('admin:index'))),
+    path('admin/', admin.site.urls),
 
     # leaderboards (by django book)
     path('leaderboards/', views.leaderboards, name='leaderboards'),

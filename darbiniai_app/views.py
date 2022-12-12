@@ -23,6 +23,10 @@ def index(request):
     """The home page for darbiniai_app"""
     return render(request, 'darbiniai_app/index.html')
 
+# def admin(request):
+#     """Manual request for admin page by button"""
+#     return render(request, 'darbiniai_app/admin.html')
+
 
 # book
 
