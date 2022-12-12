@@ -9,7 +9,7 @@
     <a href="{% url 'darbiniai_app:LBnew_entry' leaderboard.gameName %}">Add new entry</a>
 </p>
 
-<ul>
+<ol type="1">
 {% for entry in entries %}
     <li>
         <p>{{ entry.owner}}: {{entry.score}}
@@ -23,6 +23,6 @@
 {% empty %}
     <li>There are no entries for this leaderboard yet.</li>
 {% endfor %}
-</ul>
+</ol>
 
 {% endblock content %}
