@@ -2,6 +2,7 @@ from rest_framework import serializers
 from darbiniai_app.models import Leaderboard, Entry
  
  
+ #serializeriai skirti darbui su API
 class LeaderboardSerializer(serializers.ModelSerializer):
  
     class Meta:

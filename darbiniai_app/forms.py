@@ -4,6 +4,8 @@ from django import forms
 from .models import Leaderboard, Entry, Game
 from django.contrib.auth.models import User
 
+
+# formos, kurias pateikia site'ai, norint prideti arba editinti tam tikrus modelius 
 class LeaderboardForm(forms.ModelForm):
         class Meta:
             model = Leaderboard
@@ -13,6 +15,7 @@ class LeaderboardForm(forms.ModelForm):
             labels = {'gameName': 'Game'}
 
 
+# pridedant entry per /leaderboards/
 class LBEntryForm(forms.ModelForm):
         class Meta:
             model = Entry
@@ -21,6 +24,7 @@ class LBEntryForm(forms.ModelForm):
             ]
             labels = {'score':'Score'}
 
+# pridedant entry per /my_entries/
 class MEEntryForm(forms.ModelForm):
         class Meta:
             model = Entry

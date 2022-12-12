@@ -3,12 +3,14 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+# modeliai yra kaip atskiri tables/objektai database
 class Leaderboard(models.Model):
 
     gameName = models.CharField(max_length=100) # PK
     
     date_added = models.DateTimeField(auto_now_add=True) # when this leaderboard was added
 
+    # /admin/ site, rodys gameName kaip apibudinima pridetam objektui, o ne jo id
     def __str__(self):
         return self.gameName
 
@@ -18,8 +20,7 @@ class Entry(models.Model):
 
     LB = models.ForeignKey(Leaderboard, on_delete=models.CASCADE) # FK - gameName
     
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    #username = models.CharField(max_length=20) #the same as owner
+    owner = models.ForeignKey(User, on_delete=models.CASCADE) # user that added the entry
     score = models.IntegerField()
     date_added = models.DateTimeField(auto_now_add=True) # when an entry to the leaderboard was added
 
@@ -31,9 +32,9 @@ class Entry(models.Model):
 
 
 class Game(models.Model):
-    title = models.CharField(max_length=100) #game name??
-    # file = models.FileField(upload_to='media', max_length=1000)
-    icon = models.ImageField(upload_to = 'media/', default = None)
+    title = models.CharField(max_length=100) #game name
+    # file = models.FileField(upload_to='media', max_length=1000) # reikia padaryti, kad butu galima prideti failus prie zaidimo
+    icon = models.ImageField(upload_to = 'icons/', default = None)
 
     def __str__(self):
         return self.title

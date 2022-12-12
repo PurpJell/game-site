@@ -5,6 +5,8 @@ from django.urls import path
 from . import views
 
 app_name = 'darbiniai_app'
+
+# prie url patternu reikia prideti visus norimus tureti url path'us, pvz darbiniai.herokuapp.com/leaderboards/, kuri accessinant kreipiamasi i views.py -> leaderboards()
 urlpatterns = [
     # Home page
     path('', views.index, name = 'index'),

@@ -17,6 +17,8 @@ from rest_framework.decorators import api_view
 
 # Create your views here.
 
+# views'ai skirti nurodyti, kas ivyksta, kreipiantis i tam tikra URL su tam tikru html request'u
+
 def index(request):
     """The home page for darbiniai_app"""
     return render(request, 'darbiniai_app/index.html')
@@ -59,7 +61,7 @@ def my_entries(request):
 
 @login_required
 def new_leaderboard(request):
-    """Add a new leadeerboard"""
+    """Add a new leaderboard"""
     if request.method != 'POST':
         # no data submitted; create a blank form.
         form = LeaderboardForm()
@@ -144,7 +146,7 @@ def edit_entry(request, entry_id):
 # Account
 @login_required
 def account(request):
-
+    """ Opens the account page. """
     user = request.user
 
     if request.method == 'GET':
@@ -157,7 +159,7 @@ def account(request):
 
 @login_required
 def change_username(request):
-
+    """Allows user to change their username."""
     user = request.user
 
     if request.method != 'POST':
@@ -179,7 +181,7 @@ def change_username(request):
 
 @login_required
 def change_password(request):
-
+    """Allows user to change their password."""
     user = request.user
 
     if request.method != 'POST':
@@ -200,7 +202,7 @@ def change_password(request):
         
 @login_required
 def delete_account(request):
-
+    """Allows user to delete their account."""
     user = request.user
 
     if request.method == 'GET':
@@ -215,6 +217,7 @@ def delete_account(request):
         return redirect('darbiniai_app:account_deleted')
 
 def account_deleted(request):
+    """Redirects user after deleting their account."""
 
     if request.method == 'GET':
 
@@ -222,6 +225,7 @@ def account_deleted(request):
 
 # Files
 def library (request):
+    """Game library page."""
     if request.method == 'GET':
 
         games = Game.objects.all()
@@ -231,6 +235,7 @@ def library (request):
 
 
 def add_game (request):
+    """Add a game to the library."""
     if request.method == 'POST':
         form = GameForm(request.POST, request.FILES)
 
@@ -283,30 +288,6 @@ def leaderboard_list(request):
         count = leaderboards.all().delete()
         return JsonResponse({'message': '{} Leaderboards were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
 
-# CURRENTLY USELESS
-# @api_view(['GET', 'PUT', 'DELETE'])
-# def leaderboard_detail(request, gameName):
-#     # find leaderboard by pk (gameName)
-#     try: 
-#         leaderboard = Leaderboard.objects.get(gameName=gameName) 
-#         if request.method == 'GET': 
-#             leaderboard_serializer = LeaderboardSerializer(leaderboard) 
-#             return JsonResponse(leaderboard_serializer.data) 
-
-#         elif request.method == 'PUT': 
-#             leaderboard_data = JSONParser().parse(request) 
-#             leaderboard_serializer = LeaderboardSerializer(leaderboard, data=leaderboard_data) 
-#             if leaderboard_serializer.is_valid(): 
-#                 leaderboard_serializer.save() 
-#                 return JsonResponse(leaderboard_serializer.data) 
-#             return JsonResponse(leaderboard_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
-        
-#         elif request.method == 'DELETE': 
-#             leaderboard.delete() 
-#             return JsonResponse({'message': 'Leaderboard was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
-
-#     except Leaderboard.DoesNotExist: 
-#         return JsonResponse({'message': 'The leaderboard does not exist'}, status=status.HTTP_404_NOT_FOUND) 
 
 # Entries
 
