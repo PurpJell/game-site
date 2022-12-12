@@ -8,6 +8,11 @@
         {% for leaderboard in leaderboards %}
             <li>
                 <a href="{% url 'darbiniai_app:entries' leaderboard.gameName %}">{{ leaderboard }}</a>
+                {% if user == entry.owner or user.is_superuser or user.is_admin %}
+                    <a>&emsp;</a>
+                    <a href="{% url 'darbiniai_app:delete_leaderboard' leaderboard.gameName %}"> Delete</a>
+                {% endif %}
+
             </li>
         {% empty %}
             <li>No leaderboards have been added yet.</li>

@@ -28,6 +28,8 @@ urlpatterns = [
     path('LBnew_entry/<str:gameName>/', views.LBnew_entry, name='LBnew_entry'),
     path('MEnew_entry/', views.MEnew_entry, name='MEnew_entry'),
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
+    path('delete_leaderboard/<str:gameName>/', views.delete_leaderboard, name='delete_leaderboard'),
+    path('delete_entry/<int:entry_id>/', views.delete_entry, name='delete_entry'),
 
     path('account/', views.account, name='account'),
     path('account/change_username/', views.change_username, name='change_username'),

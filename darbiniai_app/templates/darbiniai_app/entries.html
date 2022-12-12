@@ -14,7 +14,9 @@
     <li>
         <p>{{ entry.owner}}: {{entry.score}}
         {% if user == entry.owner or user.is_superuser or user.is_admin %}
-            <a href="{% url 'darbiniai_app:edit_entry' entry.id %}"> Edit entry</a>
+            <a href="{% url 'darbiniai_app:edit_entry' entry.id %}"> Edit</a> -
+
+            <a href="{% url 'darbiniai_app:delete_entry' entry.id %}"> Delete</a>
         </p>
         {% endif %}
     </li>

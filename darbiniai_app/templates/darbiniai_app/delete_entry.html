@@ -1,0 +1,18 @@
+{% extends "darbiniai_app/base.html" %}
+
+{% block content %}
+
+    <p>Delete entry?</p>
+
+    <form action="{% url 'darbiniai_app:delete_entry' entry_id %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Delete</button>
+    </form>
+    
+    <form action="{% url 'darbiniai_app:entries' leaderboard %}" method='get'>
+        <button type="submit">Cancel</button>
+    </form>
+
+
+{% endblock content %}

@@ -128,6 +128,7 @@ def edit_entry(request, entry_id):
     """Edit an existing entry"""
     entry = get_object_or_404(Entry, id=entry_id)
 
+
     if entry.owner != request.user and not request.user.is_superuser and not request.user.is_admin:
         raise Http404
 
@@ -226,6 +227,51 @@ def account_deleted(request):
     if request.method == 'GET':
 
         return render(request, 'darbiniai_app/account_deleted.html')
+
+
+
+@login_required
+def delete_entry(request, entry_id):
+    """Allows user to delete an entry."""
+    user = request.user
+    entry = get_object_or_404(Entry, id=entry_id)
+    leaderboard = entry.LB
+
+    # authentificaiton
+    if entry.owner != request.user and not request.user.is_superuser and not request.user.is_admin:
+        raise Http404
+
+    if request.method == 'GET':
+
+        context = {'user':user, 'entry_id':entry_id, 'leaderboard':leaderboard}
+        return render(request, 'darbiniai_app/delete_entry.html', context)
+
+    elif request.method == 'POST':
+
+        entry.delete()
+
+        return redirect('darbiniai_app:leaderboards')
+
+@login_required
+def delete_leaderboard(request, gameName):
+    """Allows admin or superuser to delete a leaderboard."""
+    leaderboard = get_object_or_404(Leaderboard, gameName = gameName)
+
+    # authentificaiton
+    if not request.user.is_superuser and not request.user.is_admin:
+        raise Http404
+
+    if request.method == 'GET':
+
+        context = {'gameName':gameName}
+        return render(request, 'darbiniai_app/delete_leaderboard.html', context)
+
+    elif request.method == 'POST':
+
+        leaderboard.delete()
+
+        return redirect('darbiniai_app:leaderboards')
+
 
 # Files
 def library (request):

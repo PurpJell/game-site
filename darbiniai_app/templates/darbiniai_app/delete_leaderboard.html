@@ -1,0 +1,18 @@
+{% extends "darbiniai_app/base.html" %}
+
+{% block content %}
+
+    <p>Delete leaderboard for {{ gameName }}?</p>
+
+    <form action="{% url 'darbiniai_app:delete_leaderboard' gameName %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Delete</button>
+    </form>
+    
+    <form action="{% url 'darbiniai_app:leaderboards' %}" method='get'>
+        <button type="submit">Cancel</button>
+    </form>
+
+
+{% endblock content %}
