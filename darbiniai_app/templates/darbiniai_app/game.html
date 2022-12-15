@@ -1,8 +1,12 @@
 {% extends "darbiniai_app/base.html" %}
 
 {% block content %}
-<u1>
-<a>{{ game.title }} <br> {{game.icon }}</a>
 
-</u1>
+
+<a>{{ game.title }} <br> {{ game.icon }} <br> {{game.file}} </a>
+
+<br>
+
+<a href="{{ file.url }}"download>Download game</a>
+
 {% endblock content %}

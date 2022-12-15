@@ -15,6 +15,8 @@ from darbiniai_app.models import Leaderboard, Entry, Game
 from darbiniai_app.serializers import LeaderboardSerializer, EntrySerializer
 from rest_framework.decorators import api_view
 
+from django.views.decorators.http import require_POST
+
 # Create your views here.
 
 # views'ai skirti nurodyti, kas ivyksta, kreipiantis i tam tikra URL su tam tikru html request'u
@@ -229,6 +231,23 @@ def account_deleted(request):
         return render(request, 'darbiniai_app/account_deleted.html')
 
 
+def delete_game(request, title):
+    """Allows user to delete an entry."""
+    
+    game = get_object_or_404(Game, title=title)
+    
+    
+
+    if request.method == 'GET':
+
+        context = { 'game':game}
+        return render(request, 'darbiniai_app/delete_game.html', context)
+
+    elif request.method == 'POST':
+
+        game.delete()
+
+        return redirect('darbiniai_app:library')
 
 @login_required
 def delete_entry(request, entry_id):
@@ -278,7 +297,7 @@ def library (request):
     """Game library page."""
     if request.method == 'GET':
 
-        games = Game.objects.all()
+        games = Game.objects.all().values('title','icon')
 
         context = {"games" : games}
         return render (request, 'darbiniai_app/library.html', context)
@@ -299,8 +318,8 @@ def add_game (request):
     return render(request, 'darbiniai_app/add_game.html', context)
 
 def goto_game (request,title):
-    game = get_object_or_404(Game,title = title)
-    context = {'game':game}
+    game = get_object_or_404(Game, title = title)
+    context = {'game':game, 'file':game.file}
     return render(request, 'darbiniai_app/game.html',context)
 
 # API

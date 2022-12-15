@@ -1,0 +1,18 @@
+{% extends "darbiniai_app/base.html" %}
+
+{% block content %}
+
+    <p>Delete game?</p>
+
+    <form action="{% url 'darbiniai_app:delete_game' game.title %}" method='post'>
+        {% csrf_token %}
+        
+        <button name="submit">Delete</button>
+    </form>
+    
+    <form action="{% url 'darbiniai_app:library' %}" method='get'>
+        <button type="submit">Cancel</button>
+    </form>
+
+
+{% endblock content %}

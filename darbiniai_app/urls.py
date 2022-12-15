@@ -1,7 +1,8 @@
 """Defines URL patterns for darbiniai_app"""
 
 from django.urls import path, reverse_lazy
-
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 from django.views.generic.base import RedirectView
 
@@ -47,6 +48,7 @@ urlpatterns = [
     #Files 
     path ('library/', views.library, name = 'library'),
     path ('add_game/', views.add_game, name = 'add_game'),
-    path('game/<str:title>/',views.goto_game, name='game'),
+    path('game/<str:title>/',views.goto_game, name='goto_game'),
+    path('delete_game/<str:title>', views.delete_game, name = 'delete_game'),
 
-] 
+] + static (settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

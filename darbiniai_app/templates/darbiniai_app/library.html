@@ -6,14 +6,18 @@
 
 <a href="{% url 'darbiniai_app:add_game' %}">Add a game</a>
 
-<ul>
+<ol type="1">
     {% for game in games %}
         <li>
-            <a href="{% url 'darbiniai_app:game' game.title %}">{{ game.title }} - - - {{ game.icon }}</a>
+            <a href="{% url 'darbiniai_app:goto_game' game.title %}">{{ game.title}} - - - - {{game.icon}}
+            
+                <a href="{% url 'darbiniai_app:delete_game' game.title %}"> Delete</a>
+            </a>
+            
         </li>
     {% empty %}
-        <li>No files have been added yet.</li>
-    {% endfor %}   
-</ul>
+        <li>There are no games yet.</li>
+    {% endfor %}
+    </ol>
 
 {% endblock content %}
