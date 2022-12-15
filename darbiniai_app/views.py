@@ -298,6 +298,10 @@ def add_game (request):
     context = {"form": form}
     return render(request, 'darbiniai_app/add_game.html', context)
 
+def goto_game (request,title):
+    game = get_object_or_404(Game,title = title)
+    context = {'game':game}
+    return render(request, 'darbiniai_app/game.html',context)
 
 # API
 

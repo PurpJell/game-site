@@ -9,7 +9,7 @@
 <ul>
     {% for game in games %}
         <li>
-           <a>{{ game.title }} - - - {{ game.icon }}</a>
+            <a href="{% url 'darbiniai_app:game' game.title %}">{{ game.title }} - - - {{ game.icon }}</a>
         </li>
     {% empty %}
         <li>No files have been added yet.</li>

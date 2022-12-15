@@ -47,5 +47,6 @@ urlpatterns = [
     #Files 
     path ('library/', views.library, name = 'library'),
     path ('add_game/', views.add_game, name = 'add_game'),
+    path('game/<str:title>/',views.goto_game, name='game'),
 
 ] 
