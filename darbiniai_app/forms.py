@@ -48,7 +48,8 @@ class GameForm (forms.ModelForm):
         model = Game
         fields = [
             'title',
-            'icon',
-            'file',
+            # 'icon',
+            # 'file',
         ]
-        labels = {'title':'Game title', 'icon':'Game icon', 'file':'Game file'}
+        labels = {'title':'Game title'}
+        # labels = {'title':'Game title', 'icon':'Game icon', 'file':'Game file'}

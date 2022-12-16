@@ -33,8 +33,8 @@ class Entry(models.Model):
 
 class Game(models.Model):
     title = models.CharField(max_length=100) #game name
-    file = models.FileField(upload_to='media',null=True) # reikia padaryti, kad butu galima prideti failus prie zaidimo
-    icon = models.ImageField(upload_to = 'media')
+    # file = models.FileField(upload_to='media',null=True) # reikia padaryti, kad butu galima prideti failus prie zaidimo
+    # icon = models.ImageField(upload_to = 'media')
 
     def __str__(self):
         return self.title
