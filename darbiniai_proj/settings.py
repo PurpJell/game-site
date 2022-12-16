@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'darbiniai_proj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'darbiniai', 
+        'NAME': 'darbiniai_db', 
         'USER': 'postgres', 
         'PASSWORD': 'darbiniai',
         'HOST': '127.0.0.1', 
