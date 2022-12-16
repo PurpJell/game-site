@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-e#0b+s-b^c5s)*+rzkyym$!sp(imcl6co4aezzia=eh-=$*$*b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False # set to True to debug; this only works on localhost
+DEBUG = True # set to True to debug; this only works on localhost
 
 ALLOWED_HOSTS = []
 
@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'darbiniai_proj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'darbiniai_db', 
+        'NAME': 'darbiniai', 
         'USER': 'postgres', 
         'PASSWORD': 'darbiniai',
         'HOST': '127.0.0.1', 
