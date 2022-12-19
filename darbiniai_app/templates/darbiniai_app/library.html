@@ -2,22 +2,26 @@
 
 {% block content %}
 
-<p>Media:</p>
+<p>Games:</p>
 
+{% if user.is_superuser or user.is_admin %}
 <a href="{% url 'darbiniai_app:add_game' %}">Add a game</a>
+{% endif %}
 
-<ol type="1">
+<ul>
     {% for game in games %}
         <li>
-            <a href="{% url 'darbiniai_app:goto_game' game.title %}">{{ game.title}} - - - - {{game.icon}}
+            <a href="{% url 'darbiniai_app:goto_game' game.title %}">{{ game.title}}
             
+                {% if user.is_superuser or user.is_admin %}
                 <a href="{% url 'darbiniai_app:delete_game' game.title %}"> Delete</a>
+                {% endif %}
             </a>
             
         </li>
     {% empty %}
         <li>There are no games yet.</li>
     {% endfor %}
-    </ol>
+</ul>
 
 {% endblock content %}
