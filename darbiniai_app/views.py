@@ -387,7 +387,7 @@ def library (request):
     """Game library page."""
     if request.method == 'GET':
 
-        games = Game.objects.all().values('title','icon')
+        games = Game.objects.all().order_by('title')
 
         context = {"games" : games}
         return render (request, 'darbiniai_app/library.html', context)
