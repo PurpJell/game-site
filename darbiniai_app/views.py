@@ -155,6 +155,13 @@ def edit_entry(request, entry_id):
         #POST data submitted; process data.
         form = LBEntryForm(instance=entry, data = request.POST)
         if form.is_valid():
+
+            last_score = Entry.objects.get(id = entry_id).score
+            new_entry = form.save(commit = False)
+
+            if last_score <= new_entry.score:
+                return redirect('darbiniai_app:entries', gameName = leaderboard.gameName)
+
             form.save()
 
             return redirect('darbiniai_app:entries', gameName = leaderboard.gameName)
