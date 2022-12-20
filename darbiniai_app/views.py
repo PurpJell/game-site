@@ -319,11 +319,12 @@ def add_game (request):
         if form.is_valid():
 
             title = form.cleaned_data['title']
+            if not Leaderboard.objects.filter(gameName = title).exists():
 
-            lb_form = LeaderboardForm()
-            temp = lb_form.save(commit=False)
-            temp.gameName = title
-            temp.save()
+                lb_form = LeaderboardForm()
+                temp = lb_form.save(commit=False)
+                temp.gameName = title
+                temp.save()
             form.save()
 
             return redirect ('darbiniai_app:library' )
