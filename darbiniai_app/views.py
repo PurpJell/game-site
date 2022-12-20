@@ -94,9 +94,21 @@ def LBnew_entry(request, gameName):
         #POST data submitted; process data.
         form = LBEntryForm(data = request.POST)
         if form.is_valid():
+
             new_entry = form.save(commit=False)
+
+            if Entry.objects.filter(owner = request.user, LB = leaderboard).exists():
+                other_entry = Entry.objects.get(owner = request.user, LB = leaderboard)
+
+                if other_entry.score > new_entry.score:
+                    return redirect('darbiniai_app:entries', gameName = gameName)
+
+                else:
+                    other_entry.delete()
+
             new_entry.LB = leaderboard
             new_entry.owner = request.user
+
             new_entry.save()
             return redirect('darbiniai_app:entries', gameName = gameName)
 
