@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <p>Delete game?</p>
+    <p>Delete game? (This also deletes its leaderboard!)</p>
 
     <form action="{% url 'darbiniai_app:delete_game' game.title %}" method='post'>
         {% csrf_token %}

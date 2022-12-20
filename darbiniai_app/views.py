@@ -235,15 +235,21 @@ def delete_game(request, title):
     """Allows user to delete an entry."""
     
     game = get_object_or_404(Game, title=title)
+    if Leaderboard.objects.filter(gameName = title).exists():
+        lb = Leaderboard.objects.get(gameName = title)
+        has_lb = True
+    else:
+        has_lb = False
     
-    
-
     if request.method == 'GET':
 
-        context = { 'game':game}
+        context = {'game':game}
         return render(request, 'darbiniai_app/delete_game.html', context)
 
     elif request.method == 'POST':
+
+        if has_lb:
+            lb.delete()
 
         game.delete()
 
@@ -305,11 +311,21 @@ def library (request):
 
 def add_game (request):
     """Add a game to the library."""
+
     if request.method == 'POST':
         form = GameForm(request.POST, request.FILES)
+        
 
         if form.is_valid():
+
+            title = form.cleaned_data['title']
+
+            lb_form = LeaderboardForm()
+            temp = lb_form.save(commit=False)
+            temp.gameName = title
+            temp.save()
             form.save()
+
             return redirect ('darbiniai_app:library' )
     else:
         form = GameForm()
