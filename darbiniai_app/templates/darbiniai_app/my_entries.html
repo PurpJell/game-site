@@ -14,7 +14,9 @@
         <li>
             <p>
                 {{ entry.LB.gameName }}: {{entry.score}}
-                <a href="{% url 'darbiniai_app:edit_entry' entry.id %}"> Edit</a> -
+                {% if user.is_admin or user.is_superuser %}
+                    <a href="{% url 'darbiniai_app:edit_entry' entry.id %}"> Edit</a> -
+                {% endif %}
 
                 <a href="{% url 'darbiniai_app:delete_entry' entry.id %}"> Delete</a>
             </p>

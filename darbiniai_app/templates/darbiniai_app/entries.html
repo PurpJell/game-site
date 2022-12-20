@@ -13,13 +13,19 @@
 {% for entry in entries %}
     <li>
         <p>{{ entry.owner}}: {{entry.score}}
-        {% if user == entry.owner or user.is_superuser or user.is_admin %}
             <a>&emsp;</a>
+        {% if user.is_superuser or user.is_admin %}
             <a href="{% url 'darbiniai_app:edit_entry' entry.id %}"> Edit</a> -
 
-            <a href="{% url 'darbiniai_app:delete_entry' entry.id %}"> Delete</a>
-        </p>
         {% endif %}
+        
+        {% if user == entry.owner or user.is_admin or user.is_superuser %}
+
+            <a href="{% url 'darbiniai_app:delete_entry' entry.id %}"> Delete</a>
+
+        {% endif %}
+        </p>
+        
     </li>
 {% empty %}
     <li>There are no entries for this leaderboard yet.</li>
