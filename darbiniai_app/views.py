@@ -97,6 +97,10 @@ def LBnew_entry(request, gameName):
 
             new_entry = form.save(commit=False)
 
+            if Entry.objects.filter(owner = request.user, LB = leaderboard).count() > 1:
+                entries = Entry.objects.filter(owner = request.user, LB = leaderboard)
+                entries.delete()
+
             if Entry.objects.filter(owner = request.user, LB = leaderboard).exists():
                 other_entry = Entry.objects.get(owner = request.user, LB = leaderboard)
 
