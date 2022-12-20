@@ -9,4 +9,14 @@
 
 <a href="{{ file.url }}"download>Download game</a>
 
+<p>Leaderboard:</p>
+
+<ol type = "1">
+    {% for entry in top %}
+        <li>
+            <p>{{entry.owner}}: {{entry.score}}</p>
+        </li>
+    {% endfor %}
+</ol>
+
 {% endblock content %}
