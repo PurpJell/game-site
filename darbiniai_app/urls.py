@@ -28,7 +28,9 @@ urlpatterns = [
     path('new_leaderboard/', views.new_leaderboard, name='new_leaderboard'),
     path('LBnew_entry/<str:gameName>/', views.LBnew_entry, name='LBnew_entry'),
     path('MEnew_entry/', views.MEnew_entry, name='MEnew_entry'),
+    path('edit_leaderboard/<str:gameName>/', views.edit_leaderboard, name='edit_leaderboard'),
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
+    path('edit_game/<str:title>/', views.edit_game, name='edit_game'),
     path('delete_leaderboard/<str:gameName>/', views.delete_leaderboard, name='delete_leaderboard'),
     path('delete_entry/<int:entry_id>/', views.delete_entry, name='delete_entry'),
 

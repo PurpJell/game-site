@@ -14,6 +14,10 @@
             <a href="{% url 'darbiniai_app:goto_game' game.title %}">{{ game.title}}
             
                 {% if user.is_superuser or user.is_admin %}
+
+                <a>&emsp;</a>
+                <a href="{% url 'darbiniai_app:edit_game' game.title %}"> Rename</a> -
+
                 <a href="{% url 'darbiniai_app:delete_game' game.title %}"> Delete</a>
                 {% endif %}
             </a>

@@ -1,0 +1,13 @@
+{% extends "darbiniai_app/base.html" %}
+
+{% block content %}
+
+    <p>Editing {{gameName}}:</p>
+    
+    <form action="{% url 'darbiniai_app:edit_leaderboard' gameName %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Save changes</button>
+    </form>
+
+{% endblock content %}

@@ -141,6 +141,36 @@ def MEnew_entry(request):
     context = {'form': form}
     return render(request, 'darbiniai_app/MEnew_entry.html', context)
 
+
+@login_required
+def edit_leaderboard(request, gameName):
+    """Edit an existing leaderboard"""
+    leaderboard = get_object_or_404(Leaderboard, gameName = gameName)
+
+
+    if not request.user.is_superuser and not request.user.is_admin:
+        raise Http404
+
+    if request.method != 'POST':
+        #Initial request; pre-fill form with the current entry.
+        form = LeaderboardForm(instance=leaderboard)
+    else:
+        #POST data submitted; process data.
+        form = LeaderboardForm(instance=leaderboard, data = request.POST)
+        if form.is_valid():
+
+            temp = form.save(commit = False)
+
+            if Leaderboard.objects.filter(gameName = temp.gameName).exists():
+                return redirect('darbiniai_app:leaderboards')
+
+            form.save()
+
+            return redirect('darbiniai_app:leaderboards')
+
+    context = {'gameName':gameName, 'form': form}
+    return render(request, 'darbiniai_app/edit_leaderboard.html', context)
+
 @login_required
 def edit_entry(request, entry_id):
     """Edit an existing entry"""
@@ -172,6 +202,44 @@ def edit_entry(request, entry_id):
 
     context = {'entry':entry, 'leaderboard': leaderboard, 'form': form}
     return render(request, 'darbiniai_app/edit_entry.html', context)
+
+@login_required
+def edit_game(request, title):
+    """Edit an existing game"""
+    game = get_object_or_404(Game, title = title)
+
+
+    if not request.user.is_superuser and not request.user.is_admin:
+        raise Http404
+
+    if request.method != 'POST':
+        #Initial request; pre-fill form with the current entry.
+        form = GameForm(instance=game)
+    else:
+        #POST data submitted; process data.
+        form = GameForm(instance=game, data = request.POST)
+        if form.is_valid():
+
+            temp = form.save(commit = False)
+
+            if Game.objects.filter(title = temp.title).exists():
+                return redirect('darbiniai_app:library')
+
+            if Leaderboard.objects.filter(gameName = title).exists():
+
+                lb = Leaderboard.objects.get(gameName = title)
+                lb_form = LeaderboardForm(instance = lb)
+                temp_lb = lb_form.save(commit=False)
+                temp_lb.gameName = temp.title
+                temp_lb.save()
+                
+            form.save()
+
+            return redirect('darbiniai_app:library')
+
+    context = {'title':title, 'form': form}
+    return render(request, 'darbiniai_app/edit_game.html', context)
+
 
 # Account
 @login_required
