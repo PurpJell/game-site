@@ -1,0 +1,11 @@
+{% extends "darbiniai_app/base.html" %}
+
+{% block content %}
+
+    <p>Submit {{ score }} to {{ gameName }}?</p>
+
+    <form action="{% url 'darbiniai_app:submit_score' ctx %}" method='post'>
+        <button type="submit">Submit score</button>
+    </form>
+
+{% endblock content %}

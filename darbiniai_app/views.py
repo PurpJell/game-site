@@ -437,6 +437,48 @@ def goto_game (request,title):
 
     return render(request, 'darbiniai_app/game.html',context)
 
+
+@login_required
+def submit_score(request, ctx):
+
+    gameName = ctx['gameName']
+    score = ctx['score']
+
+    lb = get_object_or_404(Leaderboard, gameName = gameName)
+
+    if request.method == 'GET':
+
+        context = {'ctx':ctx, 'gameName':gameName, 'score':score}
+        return render(request, 'darbiniai_app/submit_score.html', context)
+
+    if request.method == 'POST':
+        
+        form = LBEntryForm()
+        if form.is_valid():
+
+            new_entry = form.save(commit=False)
+
+            if Entry.objects.filter(owner = request.user, LB = lb).count() > 1:
+                entries = Entry.objects.filter(owner = request.user, LB = lb)
+                entries.delete()
+
+            if Entry.objects.filter(owner = request.user, LB = lb).exists():
+                other_entry = Entry.objects.get(owner = request.user, LB = lb)
+
+                if other_entry.score > score:
+                    return redirect('darbiniai_app:entries', gameName = gameName)
+
+                else:
+                    other_entry.delete()
+
+            new_entry.score = score
+            new_entry.LB = lb
+            new_entry.owner = request.user
+
+            new_entry.save()
+            return redirect('darbiniai_app:entries', gameName = gameName)
+
+
 # API
 
 #Leaderboards

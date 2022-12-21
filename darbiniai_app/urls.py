@@ -33,6 +33,7 @@ urlpatterns = [
     path('edit_game/<str:title>/', views.edit_game, name='edit_game'),
     path('delete_leaderboard/<str:gameName>/', views.delete_leaderboard, name='delete_leaderboard'),
     path('delete_entry/<int:entry_id>/', views.delete_entry, name='delete_entry'),
+    path('submit_score/', views.submit_score, name='submit_score'),
 
     path('account/', views.account, name='account'),
     path('account/change_username/', views.change_username, name='change_username'),
