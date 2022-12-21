@@ -132,3 +132,18 @@ body {
     color: white;
     
 }
+
+.footer {
+   clear: both;
+   margin: 10em;
+   text-align: center;
+   font-family:cursive;
+    font-size: 1em;
+    background-image: linear-gradient(110deg,red,blue);
+    border-radius: 1em;
+    letter-spacing: 0.2em;
+    padding: 5px;
+    color: white;
+    
+   
+}
