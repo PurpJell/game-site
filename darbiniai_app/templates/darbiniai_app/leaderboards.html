@@ -10,6 +10,7 @@
 div { 
      padding:  5px;
      border: 1px solid black;
+     margin: 5px;
             }
 div.column {
      float: left;
@@ -35,7 +36,31 @@ div.footer {
        
         <div>Header</div>
         <div>Navigator Bar</div>
-        <div class="column side">Side<br>Lbar</div>
+        <div class="column side"><p>Leaderboards</p>
+
+    <ul>
+        {% for leaderboard in leaderboards %}
+            <li>
+                <a href="{% url 'darbiniai_app:entries' leaderboard.gameName %}">{{ leaderboard }}</a>
+                {% if user == entry.owner or user.is_superuser or user.is_admin %}
+                    <a>&emsp;</a>
+                    <a href="{% url 'darbiniai_app:edit_leaderboard' leaderboard.gameName %}"> Rename</a> -
+                    
+                    <a href="{% url 'darbiniai_app:delete_leaderboard' leaderboard.gameName %}"> Delete</a>
+                {% endif %}
+
+            </li>
+        {% empty %}
+            <li>No leaderboards have been added yet.</li>
+        {% endfor %}   
+    </ul>
+
+    {% if user.is_superuser or user.is_admin %}
+    <a href="{% url 'darbiniai_app:new_leaderboard' %}">Add a new leaderboard</a>
+    {% endif %}
+
+{% endblock content %}
+        </div>
         <div class="column main">Main Content</div>
         <div class="column side">Side<br>bar</div>
         <div class="footer">Footer</div>
