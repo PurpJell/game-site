@@ -421,6 +421,8 @@ def add_game (request):
 def goto_game (request,title):
     game = get_object_or_404(Game, title = title)
     
+    context = {'game':game, 'file':game.file}
+    
     if Leaderboard.objects.filter(gameName = title).exists():
         lb = Leaderboard.objects.get(gameName = title)
 
@@ -432,9 +434,6 @@ def goto_game (request,title):
 
             context = {'game':game, 'file':game.file, 'top':top}
         
-    else:
-        context = {'game':game, 'file':game.file}
-
     return render(request, 'darbiniai_app/game.html',context)
 
 
