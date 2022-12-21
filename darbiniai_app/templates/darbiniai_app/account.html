@@ -2,18 +2,43 @@
 
 {% block content %}
 
+<!DOCTYPE html>
+<html>
+    <head>
+        <link = rel="stylesheet" a href="main.css">
+    </head>
+        <body>
     <p>Hello, {{ user.username }}!</p>
+            
+     <div class="login_main">
+    <div class="login_table">
 
     <form action="{% url 'darbiniai_app:change_username' %}" method='get'>
-        <button type="submit">Change username</button>
+        <button type="submit">
+            <div class="login_button">
+            <p class="login_b" ><a class="login_text">Change username</a></p>
+        </div></button>
     </form>
 
     <form action="{% url 'darbiniai_app:change_password' %}" method='get'>
-        <button type="submit">Change password</button>
+        <button type="submit">
+            <div class="login_button">
+            <p class="login_b" ><a class="login_text">Change password</a></p>
+        </div></button>
+        
     </form>
 
     <form action="{% url 'darbiniai_app:delete_account' %}" method='get'>
-        <button type="submit">Delete account</button>
+        <button type="submit">
+            <div class="login_button">
+            <p class="login_b" ><a class="login_text">Change username</a></p>
+        </div></button>
     </form>
-
+            
+   
+    </div>   
+    </div>
+        </body>
+    </head>
+</html>
 {% endblock content %}
