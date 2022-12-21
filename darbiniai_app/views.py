@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import LeaderboardForm, LBEntryForm, MEEntryForm, GameForm
 
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.contrib.auth.models import User
@@ -436,46 +437,45 @@ def goto_game (request,title):
         
     return render(request, 'darbiniai_app/game.html',context)
 
-
+@csrf_exempt
 @login_required
-def submit_score(request, ctx):
-
-    gameName = ctx['gameName']
-    score = ctx['score']
+def submit_score(request, gameName, score): # VERY INSECURE :)
 
     lb = get_object_or_404(Leaderboard, gameName = gameName)
 
     if request.method == 'GET':
 
-        context = {'ctx':ctx, 'gameName':gameName, 'score':score}
+        # form = LBEntryForm()
+        context = {'gameName':gameName, 'score':score}
         return render(request, 'darbiniai_app/submit_score.html', context)
 
     if request.method == 'POST':
         
+
         form = LBEntryForm()
-        if form.is_valid():
+        
+        new_entry = form.save(commit=False)
 
-            new_entry = form.save(commit=False)
+        if Entry.objects.filter(owner = request.user, LB = lb).count() > 1:
+            entries = Entry.objects.filter(owner = request.user, LB = lb)
+            entries.delete()
 
-            if Entry.objects.filter(owner = request.user, LB = lb).count() > 1:
-                entries = Entry.objects.filter(owner = request.user, LB = lb)
-                entries.delete()
+        if Entry.objects.filter(owner = request.user, LB = lb).exists():
+            other_entry = Entry.objects.get(owner = request.user, LB = lb)
 
-            if Entry.objects.filter(owner = request.user, LB = lb).exists():
-                other_entry = Entry.objects.get(owner = request.user, LB = lb)
+            if other_entry.score > score:
+                return redirect('darbiniai_app:entries', gameName = gameName)
 
-                if other_entry.score > score:
-                    return redirect('darbiniai_app:entries', gameName = gameName)
+            else:
+                other_entry.delete()
 
-                else:
-                    other_entry.delete()
+        new_entry.score = score
+        new_entry.LB = lb
+        new_entry.owner = request.user
 
-            new_entry.score = score
-            new_entry.LB = lb
-            new_entry.owner = request.user
+        new_entry.save()
+        return redirect('darbiniai_app:entries', gameName = gameName)
 
-            new_entry.save()
-            return redirect('darbiniai_app:entries', gameName = gameName)
 
 
 # API

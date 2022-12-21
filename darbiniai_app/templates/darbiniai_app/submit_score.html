@@ -4,7 +4,7 @@
 
     <p>Submit {{ score }} to {{ gameName }}?</p>
 
-    <form action="{% url 'darbiniai_app:submit_score' ctx %}" method='post'>
+    <form action="{% url 'darbiniai_app:submit_score' gameName score %}" method='post'>
         <button type="submit">Submit score</button>
     </form>
 
