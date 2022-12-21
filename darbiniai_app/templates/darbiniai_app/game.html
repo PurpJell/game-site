@@ -3,7 +3,7 @@
 {% block content %}
 
 
-<a>{{ game.title }} <br> {{ game.icon }} <br> {{game.file}} </a>
+<!-- <a>{{ game.title }} <br> {{ game.icon }} <br> {{game.file}} </a> -->
 
 <br>
 
@@ -16,7 +16,15 @@
         <li>
             <p>{{entry.owner}}: {{entry.score}}</p>
         </li>
+
+        {% empty %}
+            <p>There are no entries for this leaderboard yet.</p>
+
     {% endfor %}
+
 </ol>
+
+
+
 
 {% endblock content %}
