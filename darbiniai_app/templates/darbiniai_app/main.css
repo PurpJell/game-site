@@ -1,11 +1,12 @@
 
-Main_header {
+.Main_header {
     
     width: 100%;
     height: 20%;
     padding: 5px;
     border: 0px solid black;
 }
+
 
 body {
     height: 100vh;
@@ -14,7 +15,7 @@ body {
     
 }
 
-Header_links {
+.Header_links {
     float: left;
     font-family:cursive;
     font-size: 0.8em;
@@ -27,14 +28,14 @@ Header_links {
 } 
 
 
-Links_text {
+.Links_text {
     
     text-decoration: none;
     color: white;
 
 }
 
-Header_links_2 {
+.Header_links_2 {
     float: right;
     font-family:cursive;
     font-size: 0.8em;
@@ -46,7 +47,7 @@ Header_links_2 {
 
 }
 
-main_web_title {
+.main_web_title {
     clear: both;
     display: flex;
     align-items: center;
@@ -58,7 +59,7 @@ main_web_title {
 
 }
 
-title_navigator {
+.title_navigator {
     padding: 5px;
     border: 0px solid black;
     display: flex;
@@ -78,14 +79,56 @@ title_navigator {
     
 }
 
-Game_1_text {
+.Game_1_text {
     text-decoration: none;
     color: rgb(92, 255, 92);
 }
 
 
 
-main {
+.main {
     padding: 5px;
     border: 0px solid black;
+}
+
+.login_main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login_table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family:cursive;
+    font-size: 1em;
+    background-image: linear-gradient(110deg,red,blue);
+    border-radius: 1em;
+    text-align: center;
+    letter-spacing: 0.2em;
+    float: left;
+    width: 50%;
+}
+
+.user_passw {
+    font-family: cursive;
+    letter-spacing: 0.5em;
+    color: white;
+}
+
+.login_button {
+    float: center;
+    font-family:cursive;
+    font-size: 1em;
+    background-image: linear-gradient(110deg,blue,red);
+    border-radius: 1em;
+    text-align: center;
+    letter-spacing: 0.2em;
+}
+
+.login_text {
+    text-decoration: none;
+    color: white;
+    
 }
