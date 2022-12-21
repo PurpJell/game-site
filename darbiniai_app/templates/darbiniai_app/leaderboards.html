@@ -87,11 +87,14 @@ div.footer {
     {% if user.is_superuser or user.is_admin %}
     <a href="{% url 'darbiniai_app:new_leaderboard' %}">Add a new leaderboard</a>
     
+        {% endif %}
+
+{% endblock content %}
+        
+        <div class="column main">Main Content</div>
+        <div class="column side">Side<br>bar</div>
+        <div class="footer">Footer</div>
         
     </body>
 </html>
 
-{% endif %}
-
-{% endblock content %}
-        
