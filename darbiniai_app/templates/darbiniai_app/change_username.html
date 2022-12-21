@@ -2,13 +2,35 @@
 
 {% block content %}
 
-    <p>Change username for {{ user.username }}:</p>
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+<body>
 
+   
+ <div class="title_navigator">
+    <div class="main_web_title">
+            <p>Change username for {{ user.username }}:</p>
+        </div>
+    </div>
+
+     <div class="login_main">
+    <div class="login_table">
+        
     <form action="{% url 'darbiniai_app:change_username' %}" method='post'>
         {% csrf_token %}
         {{ form.as_p }}
-        <button name="submit">Change username</button>
+        <div class="login_button">
+            <p class="login_b" ><a class="login_text"><button name="submit">Change password</button></a></p>
+        </div>
+        
     </form>
+         </div>
+</div>
 
+</body>
+</html>
 
 {% endblock content %}
