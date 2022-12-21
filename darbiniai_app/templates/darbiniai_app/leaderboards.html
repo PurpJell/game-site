@@ -49,6 +49,11 @@ li {
     box-shadow: inset 0 0 0.5em 0 rgb(92, 255, 92), 0 0 0.5em 0 rgb(92, 255, 92);
     
 }
+            
+li.game_1_text {
+    text-decoration: none;
+    color: rgb(92, 255, 92);
+}    
     
     
         </style>
@@ -68,7 +73,7 @@ li {
 
     <ul>
         {% for leaderboard in leaderboards %}
-            <li>
+            <li class="Game_1_text">
                 <a href="{% url 'darbiniai_app:entries' leaderboard.gameName %}">{{ leaderboard }}</a>
                 {% if user == entry.owner or user.is_superuser or user.is_admin %}
                     <a>&emsp;</a>
