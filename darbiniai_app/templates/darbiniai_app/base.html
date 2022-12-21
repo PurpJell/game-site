@@ -1,19 +1,41 @@
+<link rel="stylesheet" href="komparko_main.css">
 <p>
-    <a href="{% url 'darbiniai_app:index' %}">Home</a> -
-    <a href="{% url 'darbiniai_app:leaderboards' %}">Leaderboards</a> -
+    <div class="Main_header">
+        
+        
+    <p> <div class="Header_links">
+                <a href="{% url 'darbiniai_app:index' %}">
+                    <div class="Links_text">Home </div></a> </div> </p>
+    <p> <div class="Header_links">
+                
+    <a href="{% url 'darbiniai_app:leaderboards' %}"><div class="Links_text">Leaderboards</div> </a></div></p>
+
     {% if user.is_authenticated %}
-        <a href="{% url 'darbiniai_app:my_entries' %}">My entries</a> - 
-        <a href="{% url 'darbiniai_app:account' %}">{{ user.username }}</a> - 
-        <a href="{% url 'darbiniai_app:library' %}">Game library</a> - 
+       <p> <div class="Header_links">
+                 <a href="{% url 'darbiniai_app:my_entries' %}">
+                     <div class="Links_text">My entries </div></a> </div>
+       <p> <div class="Header_links">
+                 <a href="{% url 'darbiniai_app:account' %}">
+                     <div class="Links_text">{{ user.username }} </div></a> </div>
+       <p> <div class="Header_links">
+                 <a href="{% url 'darbiniai_app:library' %}">
+                     <div class="Links_text">Game library </div></a> </div> 
 
         {% if user.is_superuser or user.is_admin %}
-            <a href="{% url 'darbiniai_app:admin:index' %}">Admin site</a> - 
+       <p> <div class="Header_links">
+            <a href="{% url 'darbiniai_app:admin:index' %}">
+                <div class="Links_text">Admin site </div></a> </div>
         {% endif %}
-
-        <a href="{% url 'users:logout' %}">Log out</a>
+        <p> <div class="Header_links_2">
+        <a href="{% url 'users:logout' %}">
+            <div class="Links_text">Log out </div></a></div></p>
     {% else  %}
-        <a href="{% url 'users:register' %}">Register</a> -
-        <a href="{% url 'users:login' %}">Log in</a>
+        <p> <div class="Header_links_2">
+            <a href="{% url 'users:register' %}"> 
+                    <div class="Links_text"> Register </div> </a></div></p>
+    <p> <div class="Header_links_2">
+            <a href="{% url 'users:login' %}">
+                    <div class="Links_text">Login </div></a></div></p>
     {% endif %}
 </p>
 
