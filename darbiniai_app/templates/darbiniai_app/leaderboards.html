@@ -1,7 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+           
+* { 
+    margin: 0px ;
+    box-sizing: border-box;
+            }
+div { 
+     padding:  5px;
+     border: 1px solid black;
+            }
+div.column {
+     float: left;
+     height: 200px;
+            }
+div.side {
+    width: 15%;
+            }
+div.main { 
+    width: 70%;
+            }
+div.footer {
+    clear: both;
+            }
+            
+        </style>
+    </head>
+    
+    <body>
 {% extends "darbiniai_app/base.html" %}
 
 {% block content %}
-
+       
+        <div>Header</div>
+        <div>Navigator Bar</div>
+        <div class="column side">Side<br>bar</div>
+        <div class="column main">Main Content</div>
+        <div class="column side">Side<br>bar</div>
+        <div class="footer">Footer</div>
+        
     <p>Leaderboards</p>
 
     <ul>
@@ -26,3 +64,6 @@
     {% endif %}
 
 {% endblock content %}
+        
+    </body>
+</html>
