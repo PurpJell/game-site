@@ -2,10 +2,20 @@
 
 {% block content %}
 
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+<body>
+
     <form method = 'post' enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type = 'submit' >Upload</button>
+        <button type = 'submit' ><div class="login_button">
+            <p class="login_b" ><a class="login_text">Upload</a></p>
+        </div></button>
     </form>
-
+    </body>
+</html>
 {% endblock content %}
