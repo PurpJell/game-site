@@ -25,7 +25,18 @@ div.main {
 div.footer {
     clear: both;
             }
-            
+
+.main_web_title {
+    clear: both;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: cursive;
+    font-size: 3em;
+    letter-spacing: 0.3em;
+    text-shadow: 0 0 0.5em;
+
+}            
         </style>
     </head>
     
@@ -36,7 +47,10 @@ div.footer {
        
         <div>Header</div>
         <div>Navigator Bar</div>
-        <div class="column side"><p>Leaderboards</p>
+        <div class="column side">
+            <p><div class="main_web_title">
+            <p>Leaderboards</p>
+        </div></p>
 
     <ul>
         {% for leaderboard in leaderboards %}
