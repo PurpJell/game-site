@@ -90,6 +90,7 @@ ul {
     <ul>
         {% for leaderboard in leaderboards %}
             <li class="Game_1_text">
+                <br>
                 <a href="{% url 'darbiniai_app:entries' leaderboard.gameName %} class="Game_1_text">{{ leaderboard }}</a>
                 {% if user == entry.owner or user.is_superuser or user.is_admin %}
                     <a class="Game_1_text">&emsp;</a>
@@ -101,6 +102,7 @@ ul {
             </li>
         {% empty %}
             <li>No leaderboards have been added yet.</li>
+            <br>                                                                                                       
         {% endfor %}   
     </ul>
 
