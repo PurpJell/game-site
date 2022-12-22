@@ -1,10 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+.main_header {
+    width: 100%;
+    height: 20%;
+    border: 10px, double, black;
+}
+        
+
+        
+        
+        
+        
+        
+    </style>
+</head>
+<body>    
+
+
+
 {% extends 'darbiniai_app/base.html' %}
 
 {% block content %}
 
+<div class="m_header"> 
+    
 <p>Leaderboard: {{leaderboard}}</p>
 
 <p>Entries:</p>
+    
+    </div>    
+    
 <p>
     <a href="{% url 'darbiniai_app:LBnew_entry' leaderboard.gameName %}">Add new entry</a>
 </p>
@@ -33,3 +61,7 @@
 </ol>
 
 {% endblock content %}
+    
+    
+    </body>
+</html>
