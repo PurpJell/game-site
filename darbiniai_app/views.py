@@ -445,13 +445,6 @@ def submit_score(request, gameName, score): # VERY INSECURE :)
 
     if request.method == 'GET':
 
-        # form = LBEntryForm()
-        context = {'gameName':gameName, 'score':score}
-        return render(request, 'darbiniai_app/submit_score.html', context)
-
-    if request.method == 'POST':
-        
-
         form = LBEntryForm()
         
         new_entry = form.save(commit=False)
@@ -475,6 +468,7 @@ def submit_score(request, gameName, score): # VERY INSECURE :)
 
         new_entry.save()
         return redirect('darbiniai_app:entries', gameName = gameName)
+
 
 
 
