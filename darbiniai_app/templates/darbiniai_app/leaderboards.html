@@ -58,7 +58,10 @@ li.game_1_text {
     align-items: center;
     juatify-content: center;
 }    
-    
+
+.Game_1_text { 
+    text-decoration: none;
+    color: rgb(96, 96, 244);
     
         </style>
     </head>
@@ -78,12 +81,12 @@ li.game_1_text {
     <ul>
         {% for leaderboard in leaderboards %}
             <li class="Game_1_text">
-                <a href="{% url 'darbiniai_app:entries' leaderboard.gameName %}">{{ leaderboard }}</a>
+                <a href="{% url 'darbiniai_app:entries' leaderboard.gameName %} class="Game_1_text">{{ leaderboard }}</a>
                 {% if user == entry.owner or user.is_superuser or user.is_admin %}
-                    <a>&emsp;</a>
-                    <a href="{% url 'darbiniai_app:edit_leaderboard' leaderboard.gameName %}"> Rename</a> -
+                    <a class="Game_1_text">&emsp;</a>
+                    <a href="{% url 'darbiniai_app:edit_leaderboard' leaderboard.gameName %}" class="Game_1_text"> Rename</a> -
                     
-                    <a href="{% url 'darbiniai_app:delete_leaderboard' leaderboard.gameName %}"> Delete</a>
+                    <a href="{% url 'darbiniai_app:delete_leaderboard' leaderboard.gameName %}" class="Game_1_text"> Delete</a>
                 {% endif %}
 
             </li>
@@ -93,7 +96,7 @@ li.game_1_text {
     </ul>
 
     {% if user.is_superuser or user.is_admin %}
-    <a href="{% url 'darbiniai_app:new_leaderboard' %}">Add a new leaderboard</a>
+    <a href="{% url 'darbiniai_app:new_leaderboard' %}" class="Game_1_text">Add a new leaderboard</a>
     {% endif %}
 
 {% endblock content %}
