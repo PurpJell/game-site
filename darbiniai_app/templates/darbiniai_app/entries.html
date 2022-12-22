@@ -3,13 +3,23 @@
 <head>
     <style>
 
-.main_header {
+div.main_header {
     width: 100%;
     height: 20%;
-    border: 10px, double, black;
+    border: 0px, double, black;
 }
         
+div.main_web_title {
+    clear: both;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: cursive;
+    font-size: 3em;
+    letter-spacing: 0.3em;
+    text-shadow: 0 0 0.5em;
 
+}
         
         
         
@@ -26,9 +36,15 @@
 {% block content %}
 
 <div class="m_header"> 
+    </div>
     
+   <div class="main_web_title">
+            
+       
+          
 <p>Leaderboard: {{leaderboard}}</p>
-
+<br>
+<br>
 <p>Entries:</p>
     
     </div>    
