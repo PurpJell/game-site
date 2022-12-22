@@ -1,8 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+div.main_header {
+    width: 100%;
+    height: 20%;
+    border: 10px, double, black;
+} 
+   
+.main_web_title {
+    clear: both;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: cursive;
+    font-size: 3em;
+    letter-spacing: 0.3em;
+    text-shadow: 0 0 0.5em;
+
+}
+
+li { 
+    font-size: 1em;
+        }
+    
+    </style>
+</head>
+<body>
+
+
+
+
+
 {% extends "darbiniai_app/base.html" %}
 
 {% block content %}
 
-<p>Games:</p>
+  <div class="m_header">
+    </div>
+    
+    <div class="main_web_title">
+            <p>Games:</p>
+        </div>
+    
+
 
 {% if user.is_superuser or user.is_admin %}
 <a href="{% url 'darbiniai_app:add_game' %}">Add a game</a>
@@ -29,3 +70,6 @@
 </ul>
 
 {% endblock content %}
+ 
+    </body>    
+</html>
