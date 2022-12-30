@@ -21,8 +21,19 @@ div.main_header {
 }
 
 li { 
-    font-size: 1em;
+    font-size: 1.6em;
+    font-family: cursive;
         }
+
+.addgame {
+    font-size: 1.6em;
+
+}
+
+p{
+    font-size: 1.6em;
+    font-family: cursive;
+}
     
     </style>
 </head>
@@ -46,7 +57,7 @@ li {
 
 
 {% if user.is_superuser or user.is_admin %}
-<a href="{% url 'darbiniai_app:add_game' %}">Add a game</a>
+<a class="addgame" href="{% url 'darbiniai_app:add_game' %}">Add a game</a>
 {% endif %}
 
 <ul>

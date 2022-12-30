@@ -127,7 +127,7 @@ body {
     float: center;
     font-family:cursive;
     font-size: 1em;
-    background-image: linear-gradient(110deg,blue,red);
+    background-image: linear-gradient(110deg, pink, lightblue);
     border-radius: 1em;
     text-align: center;
     letter-spacing: 0.2em;
@@ -164,7 +164,7 @@ body {
             {% extends "darbiniai_app/base.html" %}
 
 {% block content %}
-            
+<br> <br> <br> <br> <br> <br>
             <div class="title_navigator">
     <div class="main_web_title">
             <p>Hello, {{ user.username }}!</p>
@@ -176,24 +176,24 @@ body {
     <div class="login_table">
 
     <form action="{% url 'darbiniai_app:change_username' %}" method='get'>
-        <button type="submit">
-            <div class="login_button">
+        <button type="submit" class="login_button">
+            <div >
             <p class="login_b" ><a class="login_text">Change username</a></p>
         </div></button>
     </form>
 
     <form action="{% url 'darbiniai_app:change_password' %}" method='get'>
-        <button type="submit">
-            <div class="login_button">
+        <button type="submit" class="login_button">
+            <div>
             <p class="login_b" ><a class="login_text">Change password</a></p>
         </div></button>
         
     </form>
 
     <form action="{% url 'darbiniai_app:delete_account' %}" method='get'>
-        <button type="submit">
-            <div class="login_button">
-            <p class="login_b" ><a class="login_text">Change username</a></p>
+        <button type="submit" class="login_button">
+            <div>
+            <p class="login_b" ><a class="login_text">Delete account</a></p>
         </div></button>
     </form>
             

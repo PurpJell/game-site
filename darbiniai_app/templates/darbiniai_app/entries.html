@@ -20,10 +20,17 @@ div.main_web_title {
     text-shadow: 0 0 0.5em;
 
 }
-        
-        
-        
-        
+
+.noentries {
+    font-size: 1.6em;
+    font-family: cursive;
+}
+
+li {
+    font-size: 1.6em;
+    font-family: cursive;
+}
+
         
     </style>
 </head>
@@ -42,15 +49,15 @@ div.main_web_title {
             
        
           
-<p>Leaderboard: {{leaderboard}}</p>
+<p class="leaderboard">Leaderboard: {{leaderboard}}</p>
 <br>
 <br>
-<p>Entries:</p>
+<p class="entries">&emsp;entries:</p>
     
     </div>    
     
 <p>
-    <a href="{% url 'darbiniai_app:LBnew_entry' leaderboard.gameName %}">Add new entry</a>
+    <a class="entry" href="{% url 'darbiniai_app:LBnew_entry' leaderboard.gameName %}">Add new entry</a>
 </p>
 
 <ol type="1">
@@ -72,7 +79,7 @@ div.main_web_title {
         
     </li>
 {% empty %}
-    <p>There are no entries for this leaderboard yet.</p>
+    <p class="noentries">There are no entries for this leaderboard yet.</p>
 {% endfor %}
 </ol>
 

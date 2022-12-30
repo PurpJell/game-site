@@ -156,10 +156,14 @@ body {
    
 }
 
+a {
+    text-decoration: none;
+}
+
     
     </style>
    
-<title>Y9 Gaming Website</title>    
+<title>Darbiniai</title>    
     </head>
 <body>
     <p>
@@ -174,13 +178,13 @@ body {
     <a href="{% url 'darbiniai_app:leaderboards' %}"><div class="Links_text">Leaderboards</div> </a></div></p>
 
     {% if user.is_authenticated %}
-       <p> <div class="Header_links">
+       <div class="Header_links">
                  <a href="{% url 'darbiniai_app:my_entries' %}">
                      <div class="Links_text">My entries </div></a> </div>
-       <p> <div class="Header_links">
+       <div class="Header_links">
                  <a href="{% url 'darbiniai_app:account' %}">
                      <div class="Links_text">{{ user.username }} </div></a> </div>
-       <p> <div class="Header_links">
+     <div class="Header_links">
                  <a href="{% url 'darbiniai_app:library' %}">
                      <div class="Links_text">Game library </div></a> </div> 
 

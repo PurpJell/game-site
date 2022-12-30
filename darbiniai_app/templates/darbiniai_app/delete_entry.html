@@ -1,7 +1,19 @@
-{% extends "darbiniai_app/base.html" %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        p {
+            font-size: 1.6em;
+            font-family: cursive;
+        }
+    </style>
+</head>
+<body>
+    {% extends "darbiniai_app/base.html" %}
 
 {% block content %}
-
+<br><br><br><br><br>
     <p>Delete entry?</p>
 
     <form action="{% url 'darbiniai_app:delete_entry' entry_id %}" method='post'>
@@ -16,3 +28,5 @@
 
 
 {% endblock content %}
+</body>
+</html>

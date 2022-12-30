@@ -7,11 +7,7 @@
     margin: 0px ;
     box-sizing: border-box;
             }
-div { 
-     padding:  5px;
-     border: 0px solid black;
-     margin: 5px;
-            }
+
 div.column {
      float: left;
      height: 200px;
@@ -46,9 +42,7 @@ li {
     padding: 0.25em 1em;
     border-radius: 0.5em;
     text-shadow: 0 0 0.9em rgb(96, 96, 244)(0 0% 100% / 0.3), 0 0 0.9em rgb(96, 96, 244);
-    box-shadow: inset 0 0 0.5em 0 rgb(96, 96, 244), 0 0 0.5em 0 rgb(96, 96, 244);
-    
-    
+    box-shadow: inset 0 0 0.5em 0 rgb(96, 96, 244), 0 0 0.5em 0 rgb(96, 96, 244);    
 }
             
 li.game_1_text {
@@ -60,13 +54,24 @@ li.game_1_text {
 li.Game_1_text { 
     text-decoration: none;
     color: rgb(96, 96, 244);
+    display: flex;
+    flex-display: column;
+    max-width: 95vw;
+    
+}
     
 ul { 
-    display:none;
     float: left;
+    position: center;
+
+}
+
+.column_side {
+    position: center;
+}
 
     
-p.title {    
+
         </style>
     </head>
     
@@ -83,17 +88,23 @@ p.title {
         <br>
         <br>
         <br>
-        
-        <div class="column side">
-            <p><div class="main_web_title">
-            <p class="title">Leaderboards</p>
-        </div></p>
 
+        
+        <div class="column_side">
+            <p><div class="main_web_title">
+                 <p class="title">Leaderboards</p>
+        </p>
+    </div>
+    {% if user.is_superuser or user.is_admin %}
+    <a href="{% url 'darbiniai_app:new_leaderboard' %}" class="Game_1_text">&emsp;&emsp;&emsp;Add a new leaderboard</a>
+    {% endif %}
+    <br>     
+    <br>     
     <ul>
         {% for leaderboard in leaderboards %}
             <li class="Game_1_text">
                 <br>
-                <a href="{% url 'darbiniai_app:entries' leaderboard.gameName %} class="Game_1_text">{{ leaderboard }}</a>
+                <a href="{% url 'darbiniai_app:entries' leaderboard.gameName %}" class="Game_1_text">{{ leaderboard }}</a>
                 {% if user == entry.owner or user.is_superuser or user.is_admin %}
                     <a class="Game_1_text">&emsp;</a>
                     <a href="{% url 'darbiniai_app:edit_leaderboard' leaderboard.gameName %}" class="Game_1_text"> Rename</a> -
@@ -108,9 +119,8 @@ p.title {
         {% endfor %}   
     </ul>
 
-    {% if user.is_superuser or user.is_admin %}
-    <a href="{% url 'darbiniai_app:new_leaderboard' %}" class="Game_1_text">Add a new leaderboard</a>
-    {% endif %}
+    
+</div>
 
 {% endblock content %}
         </div>

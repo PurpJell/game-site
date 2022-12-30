@@ -1,13 +1,48 @@
-{% extends 'darbiniai_app/base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        p {
+            font-family: cursive;
+            font-size: 1.6em;
+            color: white;
+            text-shadow: 0 0 0.5em black;
+        }
+        li {
+            font-family: cursive;
+            
+        }
+        .container {
+            text-align: le;
+        }
+        .container1 {
+            text-shadow: none;
+            font-family: cursive;
+            font-size: 1.6em;           
+        }
+    </style>
+</head>
+<body>
+    {% extends 'darbiniai_app/base.html' %}
 
 {% block content %}
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    
 <p>User: {{username}}</p>
 
 <p>Entries:</p>
-<p>
+    </div>
+    <div class="container1">
     <a href="{% url 'darbiniai_app:MEnew_entry' %}">Add new entry</a>
-</p>
+</div>
 
 <ul>
     {% for entry in myEntries %}
@@ -25,5 +60,8 @@
         <li>There are no entries for this user yet.</li>
     {% endfor %}
     </ul>
+</div>
     
 {% endblock content %}
+</body>
+</html>
