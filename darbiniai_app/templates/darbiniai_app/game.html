@@ -145,11 +145,12 @@ body {
    text-align: center;
    font-family:cursive;
     font-size: 1em;
-    background-image: ;
+    background-image: linear-gradient(0deg,rgb(134, 76, 193),rgb(247, 73, 238));
     border-radius: 1em;
+    border-style: solid;
+    border-color: black;
     letter-spacing: 0.2em;
     padding: 5px;
-    color: ;
     
    
 }
@@ -158,9 +159,16 @@ ol {
     font-size: 1.6em;
 }
 
+li {
+    font-family: cursive;
+    color: white;
+    -webkit-text-stroke: 0.06em rgb(37, 35, 35); 
+}
+
 .leaderboard {
     font-family: cursive;
-    font-size: 1.6em;
+    font-size: 2.5em;
+    text-align: center;
 }
 
     
@@ -174,19 +182,14 @@ ol {
 
 {% block content %}
 
-
-<!-- <a>{{ game.title }} <br> {{ game.icon }} <br> {{game.file}} </a> -->
-
 <br>
-
-
-        
+<br>
+<br>  
     
 <a href="{{ file.url }}"download><div class="footer">Download game</div></a>
     
-
-
 <p class="leaderboard">Leaderboard:</p>
+<br>
 
 <ol type = "1">
     {% for entry in top %}

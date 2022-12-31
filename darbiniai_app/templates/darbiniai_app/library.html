@@ -21,18 +21,35 @@ div.main_header {
 }
 
 li { 
+    list-style-type: none;
     font-size: 1.6em;
     font-family: cursive;
-        }
+    color:white;
+    -webkit-text-stroke: 0.05em black;
+    }
 
 .addgame {
     font-size: 1.6em;
+    color: red;
+    font-family: cursive;
+    -webkit-text-stroke: 0.06em black;
 
 }
 
 p{
     font-size: 1.6em;
     font-family: cursive;
+}
+
+.mod {
+    color:red;
+    font-family: cursive;
+    -webkit-text-stroke: 0.06em black; 
+}
+
+.game_title {
+    color: white;
+    -webkit-text-stroke: 0.06em black; 
 }
     
     </style>
@@ -57,20 +74,20 @@ p{
 
 
 {% if user.is_superuser or user.is_admin %}
-<a class="addgame" href="{% url 'darbiniai_app:add_game' %}">Add a game</a>
+<a class="addgame" href="{% url 'darbiniai_app:add_game' %}">&emsp;&ensp;Add a game</a>
 {% endif %}
 
 <ul>
     {% for game in games %}
         <li>
-            <a href="{% url 'darbiniai_app:goto_game' game.title %}">{{ game.title}}
+            <a class="game_title" href="{% url 'darbiniai_app:goto_game' game.title %}">{{ game.title}}
             
                 {% if user.is_superuser or user.is_admin %}
 
                 <a>&emsp;</a>
-                <a href="{% url 'darbiniai_app:edit_game' game.title %}"> Rename</a> -
+                <a class="mod" href="{% url 'darbiniai_app:edit_game' game.title %}"> Rename</a> &thinsp;
 
-                <a href="{% url 'darbiniai_app:delete_game' game.title %}"> Delete</a>
+                <a class="mod" href="{% url 'darbiniai_app:delete_game' game.title %}"> Delete</a>
                 {% endif %}
             </a>
             
