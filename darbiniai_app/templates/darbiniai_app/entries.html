@@ -21,14 +21,35 @@ div.main_web_title {
 
 }
 
+.entries {
+    font-size: 1.8em;
+    font-family: cursive;
+    text-shadow: 0 0 0.3em rgb(74, 0, 74);
+}
+
 .noentries {
     font-size: 1.6em;
     font-family: cursive;
 }
 
+.mod {
+    font-size: 0.8em;
+    color: red;
+    -webkit-text-stroke: 0.06em rgb(37, 35, 35); 
+}
+
+.newentry {
+    font-size: 1.4em;
+    font-family: cursive;
+    color: red;
+    -webkit-text-stroke: 0.06em rgb(37, 35, 35); 
+}
+
 li {
     font-size: 1.6em;
     font-family: cursive;
+    color: white;
+    -webkit-text-stroke: 0.06em rgb(37, 35, 35); 
 }
 
         
@@ -52,27 +73,29 @@ li {
 <p class="leaderboard">Leaderboard: {{leaderboard}}</p>
 <br>
 <br>
-<p class="entries">&emsp;entries:</p>
+</div>    
+<p class="entries">&emsp;Entries:</p>
     
-    </div>    
     
+{% if user.is_admin or user.is_superuser %}
 <p>
-    <a class="entry" href="{% url 'darbiniai_app:LBnew_entry' leaderboard.gameName %}">Add new entry</a>
+    <a class="newentry" href="{% url 'darbiniai_app:LBnew_entry' leaderboard.gameName %}">&ensp;Add new entry</a>
 </p>
+{% endif %}
 
 <ol type="1">
 {% for entry in entries %}
     <li>
         <p>{{ entry.owner}}: {{entry.score}}
-            <a>&emsp;</a>
+            <a>&thinsp;</a>
         {% if user.is_superuser or user.is_admin %}
-            <a href="{% url 'darbiniai_app:edit_entry' entry.id %}"> Edit</a> -
+            <a class="mod" href="{% url 'darbiniai_app:edit_entry' entry.id %}"> Edit</a> &thinsp;
 
         {% endif %}
         
         {% if user == entry.owner or user.is_admin or user.is_superuser %}
 
-            <a href="{% url 'darbiniai_app:delete_entry' entry.id %}"> Delete</a>
+            <a class="mod" href="{% url 'darbiniai_app:delete_entry' entry.id %}"> Delete</a>
 
         {% endif %}
         </p>

@@ -103,35 +103,12 @@ body {
     justify-content: center;
 }
 
-.login_table {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family:cursive;
-    font-size: 1em;
-    background-image: linear-gradient(110deg,red,blue);
-    border-radius: 1em;
-    text-align: center;
-    letter-spacing: 0.2em;
-    float: left;
-    width: 50%;
-}
-
 .user_passw {
     font-family: cursive;
     letter-spacing: 0.5em;
     color: white;
 }
 
-.login_button {
-    float: center;
-    font-family:cursive;
-    font-size: 1em;
-    background-image: linear-gradient(110deg, pink, lightblue);
-    border-radius: 1em;
-    text-align: center;
-    letter-spacing: 0.2em;
-}
 
 .login_text {
     text-decoration: none;
@@ -149,9 +126,30 @@ body {
     border-radius: 1em;
     letter-spacing: 0.2em;
     padding: 5px;
-    color: ;
-    
-   
+}
+
+.acc_button {
+    float: center;
+    font-family:cursive;
+    font-size: 1em;
+    background-image: linear-gradient(0deg,rgb(134, 76, 193),rgb(247, 73, 238));
+    border-radius: 1em;
+    text-align: center;
+    letter-spacing: 0.2em;
+}
+
+.acc_table {
+    display: contents;
+    align-items: center;
+    justify-content: center;
+    font-family:cursive;
+    font-size: 1em;
+    background-image: linear-gradient(110deg,rgb(128, 0, 214),rgb(255, 0, 242));
+    border-radius: 1em;
+    text-align: center;
+    letter-spacing: 0.2em;
+    float: left;
+    width: 50%;
 }
 
     
@@ -173,17 +171,17 @@ body {
    
             
      <div class="login_main">
-    <div class="login_table">
+    <div class="acc_table">
 
     <form action="{% url 'darbiniai_app:change_username' %}" method='get'>
-        <button type="submit" class="login_button">
+        <button type="submit" class="acc_button">
             <div >
             <p class="login_b" ><a class="login_text">Change username</a></p>
         </div></button>
     </form>
 
     <form action="{% url 'darbiniai_app:change_password' %}" method='get'>
-        <button type="submit" class="login_button">
+        <button type="submit" class="acc_button">
             <div>
             <p class="login_b" ><a class="login_text">Change password</a></p>
         </div></button>
@@ -191,7 +189,7 @@ body {
     </form>
 
     <form action="{% url 'darbiniai_app:delete_account' %}" method='get'>
-        <button type="submit" class="login_button">
+        <button type="submit" class="acc_button">
             <div>
             <p class="login_b" ><a class="login_text">Delete account</a></p>
         </div></button>

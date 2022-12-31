@@ -37,27 +37,32 @@ div.footer {
 li {
     font-size: 1.6em;
     display: inline-block;
-    color: rgb(96, 96, 244);
     border: currentColor 0.125em solid;
     padding: 0.25em 1em;
     border-radius: 0.5em;
-    text-shadow: 0 0 0.9em rgb(96, 96, 244)(0 0% 100% / 0.3), 0 0 0.9em rgb(96, 96, 244);
-    box-shadow: inset 0 0 0.5em 0 rgb(96, 96, 244), 0 0 0.5em 0 rgb(96, 96, 244);    
+    box-shadow: inset 0 0 0.5em 0 rgb(162, 0, 255), 0 0 0.5em 0 rgb(149, 0, 255);
+    
+    
 }
             
 li.game_1_text {
     text-decoration: none;
-    color: rgb(96, 96, 244);
+    color: rgb(255, 0, 247);
    
 }    
 
 li.Game_1_text { 
     text-decoration: none;
-    color: rgb(96, 96, 244);
+    color: rgb(236, 28, 255);
     display: flex;
-    flex-display: column;
     max-width: 95vw;
     
+}
+.mod {
+    color:red;
+    font-family: cursive;
+    font-size: 0.8em;
+    -webkit-text-stroke: 0.06em rgb(37, 35, 35); 
 }
     
 ul { 
@@ -68,6 +73,13 @@ ul {
 
 .column_side {
     position: center;
+}
+
+.newlb {
+    font-size: 1.4em;
+    color:red;
+    font-family: cursive;
+    -webkit-text-stroke: 0.06em rgb(37, 35, 35); 
 }
 
     
@@ -88,15 +100,17 @@ ul {
         <br>
         <br>
         <br>
-
+        
         
         <div class="column_side">
             <p><div class="main_web_title">
-                 <p class="title">Leaderboards</p>
-        </p>
-    </div>
+                <p class="title">Leaderboards</p>
+            </p>
+        </div>
+        <br>
+        <br>
     {% if user.is_superuser or user.is_admin %}
-    <a href="{% url 'darbiniai_app:new_leaderboard' %}" class="Game_1_text">&emsp;&emsp;&emsp;Add a new leaderboard</a>
+    <a href="{% url 'darbiniai_app:new_leaderboard' %}" class="newlb">&emsp;&emsp;Add a new leaderboard</a>
     {% endif %}
     <br>     
     <br>     
@@ -106,10 +120,10 @@ ul {
                 <br>
                 <a href="{% url 'darbiniai_app:entries' leaderboard.gameName %}" class="Game_1_text">{{ leaderboard }}</a>
                 {% if user == entry.owner or user.is_superuser or user.is_admin %}
-                    <a class="Game_1_text">&emsp;</a>
-                    <a href="{% url 'darbiniai_app:edit_leaderboard' leaderboard.gameName %}" class="Game_1_text"> Rename</a> -
+                    <a>&emsp;</a>
+                    <a class="mod" href="{% url 'darbiniai_app:edit_leaderboard' leaderboard.gameName %}" class="Game_1_text"> Rename</a> &ensp;
                     
-                    <a href="{% url 'darbiniai_app:delete_leaderboard' leaderboard.gameName %}" class="Game_1_text"> Delete</a>
+                    <a class="mod" href="{% url 'darbiniai_app:delete_leaderboard' leaderboard.gameName %}" class="Game_1_text"> Delete</a>
                 {% endif %}
 
             </li>
