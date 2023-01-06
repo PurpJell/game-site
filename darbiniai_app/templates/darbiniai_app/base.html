@@ -4,22 +4,14 @@
     <style>
     
     
-.Main_header {
-    
-    width: 100%;
-    height: 15%;
-    padding: 5px;
-    border: 0px solid black;
-    background: white;
-}
+
 
 
 body {
-    height: 100vh;
-    width: 100%;
     background-image: linear-gradient(110deg,#a90bbf,#00d4ff);
-    
-}
+    max-height: 100vh;
+    max-width: 100vw;
+    }
 
 .Header_links {
     float: left;
@@ -161,27 +153,28 @@ a {
     text-decoration: none;
 }
 
-.navcontainer {
-    display: flex;
-    flex-direction: row;
+.Main_header {
+    width: 100%;
+    height: 15%;
+    padding: 5px;
+    border: 0px solid black;
+    background: white;
     position: fixed;
+    position: center;
 }
-
     
     </style>
    
 <title>Darbiniai</title>    
     </head>
 <body>
-    <p>
     <div class="Main_header">
-        
-    <p> <div class="Header_links">
+        <div class="Header_links">
                 <a href="{% url 'darbiniai_app:index' %}">
-                    <div class="Links_text">Home </div></a> </div> </p>
-    <p> <div class="Header_links">
+                    <div class="Links_text">Home </div></a> </div>
+                     <div class="Header_links">
 
-    <a href="{% url 'darbiniai_app:leaderboards' %}"><div class="Links_text">Leaderboards</div> </a></div></p>
+    <a href="{% url 'darbiniai_app:leaderboards' %}"><div class="Links_text">Leaderboards</div> </a></div>
     {% if user.is_authenticated %}
 
        <div class="Header_links">
@@ -193,27 +186,25 @@ a {
        <div class="Header_links">
                  <a href="{% url 'darbiniai_app:library' %}">
                      <div class="Links_text">Game library </div></a> </div> 
-
+                     
         {% if user.is_superuser or user.is_admin %}
-       <p> <div class="Header_links">
+        <div class="Header_links">
             <a href="{% url 'darbiniai_app:admin:index' %}">
-                <div class="Links_text">Admin site </div></a> </div>
+                <div class="Links_text">Admin site </div></a> 
         {% endif %}
-        <p> <div class="Header_links_2">
+        <div class="Header_links_2">
         <a href="{% url 'users:logout' %}">
-            <div class="Links_text">Log out </div></a></div></p>
+            <div class="Links_text">Log out </div></a></div>
     {% else  %}
-        <p> <div class="Header_links_2">
+        <div class="Header_links_2">
             <a href="{% url 'users:register' %}"> 
-                    <div class="Links_text"> Register </div> </a></div></p>
-    <p> <div class="Header_links_2">
+                    <div class="Links_text"> Register </div> </a></div>
+        <div class="Header_links_2">
             <a href="{% url 'users:login' %}">
-                    <div class="Links_text">Login </div></a></div></p>
+                    <div class="Links_text">Login </div></a></div>
     {% endif %}
 
             </div>
-    
-</p>
 </body>
 </html>
 
