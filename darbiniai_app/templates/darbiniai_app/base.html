@@ -7,9 +7,10 @@
 .Main_header {
     
     width: 100%;
-    height: 20%;
+    height: 15%;
     padding: 5px;
     border: 0px solid black;
+    background: white;
 }
 
 
@@ -160,6 +161,12 @@ a {
     text-decoration: none;
 }
 
+.navcontainer {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+}
+
     
     </style>
    
@@ -169,22 +176,21 @@ a {
     <p>
     <div class="Main_header">
         
-        
     <p> <div class="Header_links">
                 <a href="{% url 'darbiniai_app:index' %}">
                     <div class="Links_text">Home </div></a> </div> </p>
     <p> <div class="Header_links">
-                
-    <a href="{% url 'darbiniai_app:leaderboards' %}"><div class="Links_text">Leaderboards</div> </a></div></p>
 
+    <a href="{% url 'darbiniai_app:leaderboards' %}"><div class="Links_text">Leaderboards</div> </a></div></p>
     {% if user.is_authenticated %}
+
        <div class="Header_links">
                  <a href="{% url 'darbiniai_app:my_entries' %}">
                      <div class="Links_text">My entries </div></a> </div>
        <div class="Header_links">
                  <a href="{% url 'darbiniai_app:account' %}">
                      <div class="Links_text">{{ user.username }} </div></a> </div>
-     <div class="Header_links">
+       <div class="Header_links">
                  <a href="{% url 'darbiniai_app:library' %}">
                      <div class="Links_text">Game library </div></a> </div> 
 
@@ -204,6 +210,9 @@ a {
             <a href="{% url 'users:login' %}">
                     <div class="Links_text">Login </div></a></div></p>
     {% endif %}
+
+            </div>
+    
 </p>
 </body>
 </html>
