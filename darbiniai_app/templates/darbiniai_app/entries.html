@@ -3,6 +3,10 @@
 <head>
     <style>
 
+.delete {
+    text-decoration: none;
+}
+
 div.main_header {
     width: 100%;
     height: 20%;
@@ -47,7 +51,7 @@ li {
     
    <div class="main_web_title">
             
-       
+       <br><br><br><br>
           
 <p class="leaderboard">Leaderboard: {{leaderboard}}</p>
 <br>
@@ -72,7 +76,7 @@ li {
         
         {% if user == entry.owner or user.is_admin or user.is_superuser %}
 
-            <a href="{% url 'darbiniai_app:delete_entry' entry.id %}"> Delete</a>
+            <a class="delete" href="{% url 'darbiniai_app:delete_entry' entry.id %}"> Delete</a>
 
         {% endif %}
         </p>
