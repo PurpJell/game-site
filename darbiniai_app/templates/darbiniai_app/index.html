@@ -12,9 +12,7 @@
 
 body {
     height: 100vh;
-    width: 100%;
-    background-image: linear-gradient(110deg,rgb(16, 16, 255),#f43737);
-    
+    width: 100%;    
 }
 
 .Header_links {
@@ -39,7 +37,7 @@ body {
 
 .Header_links_2 {
     float: right;
-    font-family:cursive;
+    font-family: cursive;
     font-size: 0.8em;
     background-image: linear-gradient(110deg,red,blue);
     border-radius: 1em;
@@ -50,23 +48,8 @@ body {
 }
 
 .main_web_title {
-    clear: both;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: cursive;
-    font-size: 2em;
-    letter-spacing: 0.3em;
-    text-shadow: 0 0 0.5em;
-
-}
-
-.title_navigator {
-    padding: 5px;
-    border: 0px solid black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: 2px solid white;
+    border-radius: 10px;
 }
 
 #game_b {
@@ -146,10 +129,57 @@ body {
     letter-spacing: 0.2em;
     padding: 5px;
     color: white;
-    
-   
 }
 
+@keyframes pulsate {
+    
+    100% {
+  
+        text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #f09,
+        0 0 80px #f09,
+        0 0 90px #f09,
+        0 0 100px #f09,
+        0 0 150px #f09;
+    
+    }
+    
+    0% {
+  
+      text-shadow:
+      0 0 4px #fff,
+      0 0 10px #fff,
+      0 0 18px #fff,
+      0 0 38px #f09,
+      0 0 73px #f09,
+      0 0 80px #f09,
+      0 0 94px #f09,
+      0 0 140px #f09;
+  
+      }
+    }
+
+.greeting {
+    font-family: "neon";
+    font-family: 'LIBRARY 3 AM', sans-serif;
+    font-size: 1.7em;
+    color: #fff;
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #f09,
+    0 0 82px #f09,
+    0 0 92px #f09,
+    0 0 102px #f09,
+    0 0 151px #f09;
+    animation: pulsate 2.5s infinite alternate;
+}
+
+@import url('https://fonts.cdnfonts.com/css/library-3-am');
     
     </style>
    
@@ -163,10 +193,8 @@ body {
 {% block content %}
     
 <br> <br> <br> <br> <br> <br>
-<div class="title_navigator">
     <div class="main_web_title">
-            <p>Welcome to Darbiniai!</p>
-        </div>
+            <p class="greeting">Welcome to Darbiniai!</p>
     </div>
     {% endblock content %}
     
