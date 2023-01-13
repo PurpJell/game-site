@@ -20,16 +20,20 @@ body {
 
 .Header_links {
     float: left;
-    font-family:cursive;
+    font-family: cursive;
     font-size: 0.8em;
-    background-image: linear-gradient(110deg,rgb(128, 0, 214),rgb(255, 0, 242));
-    border-radius: 1em;
+    border: 1px solid silver;
+    border-radius: 6px;
     letter-spacing: 0.2em;
-    border-style: solid;
     padding: 1em;
     margin: 1em;
-    
+    background:linear-gradient(to bottom right,rgba(63,81,181,1) 0%, rgba(171,71,188 ,1) 70%);
+    box-shadow: 1px 1px 30px rgba(81,45,168 ,1);
 } 
+.Header_links:hover {
+    filter: drop-shadow(2px 2px 2px #f09);
+    background: transparent;
+}
 
 
 .Links_text {
@@ -37,20 +41,23 @@ body {
     text-decoration: none;
     color: white;
     border-radius: 1em;
-
 }
 
 .Header_links_2 {
     float: right;
-    font-family:cursive;
+    font-family: cursive;
     font-size: 0.8em;
-    background-image: linear-gradient(110deg,rgb(128, 0, 214),rgb(255, 0, 242));
-    border-radius: 1em;
-    border-style: solid;
+    border: 1px solid silver;
+    border-radius: 6px;
     letter-spacing: 0.2em;
     padding: 1em;
     margin: 1em;
-
+    background:linear-gradient( to bottom right,rgba(63,81,181,1) 0%, rgba(171,71,188 ,1) 70%);
+    box-shadow: 1px 1px 30px rgba(81,45,168 ,1);
+}
+.Header_links_2:hover {
+    filter: drop-shadow(2px 2px 2px #f09);
+    background: transparent;
 }
 
 #game_b {
@@ -62,15 +69,12 @@ body {
     border-radius: 0.5em;
     text-shadow: 0 0 0.9em rgb(92, 255, 92)(0 0% 100% / 0.3), 0 0 0.9em rgb(92, 255, 92);
     box-shadow: inset 0 0 0.5em 0 rgb(92, 255, 92), 0 0 0.5em 0 rgb(92, 255, 92);
-    
 }
 
 .Game_1_text {
     text-decoration: none;
     color: rgb(92, 255, 92);
 }
-
-
 
 .main {
     padding: 5px;
@@ -116,7 +120,6 @@ body {
 .login_text {
     text-decoration: none;
     color: white;
-    
 }
 
 .footer {
@@ -130,8 +133,6 @@ body {
     letter-spacing: 0.2em;
     padding: 5px;
     color: white;
-    
-   
 }
 
 a {
@@ -143,6 +144,8 @@ a {
     border: 0px solid black;
     position: fixed;
     display: block;
+    border-bottom: 3px double silver;
+    background-color: #1a1a1a;
 }
 
     

@@ -5,6 +5,7 @@
             p {
                 font-family: cursive;
                 font-size: 1.6em;
+                color: white;
             }
         </style>
     </head>
@@ -14,8 +15,7 @@
         {% block content %}
 
         
-        <br><br><br><br><br><br><br>
-        
+        <br><br><br><br><br>
             <p>Delete account {{ user.username }}? (All of your entries will be lost forever)!</p>
         
             <form action="{% url 'darbiniai_app:delete_account' %}" method='post'>

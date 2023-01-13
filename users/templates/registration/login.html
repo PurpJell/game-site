@@ -1,19 +1,32 @@
-{% extends "darbiniai_app/base.html" %}
+<DOCTYPE html>
+    <html>
+        <head>
+            <style>
+                p {
+                    color: white;
+                }
+            </style>
+        </head>
+        <body>
+            {% extends "darbiniai_app/base.html" %}
 
-{% block content %}
+            {% block content %}
+            
+            <br><br><br><br><br><br>
+                {% if form.errors %}
+                    <p>Username and password didn't match. Please try again.</p>
+                {% endif %}
+            
+                <form method="post" action="{% url 'users:login' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+            
+                    <button name="submit">Log in</button>
+                    <input type="hidden" name="next"
+                        value ="{% url 'darbiniai_app:index' %}" />
+            
+                </form>
+            
+            {% endblock content %}</body>
+    </html>
 
-    {% if form.errors %}
-        <p>Username and password didn't match. Please try again.</p>
-    {% endif %}
-
-    <form method="post" action="{% url 'users:login' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-
-        <button name="submit">Log in</button>
-        <input type="hidden" name="next"
-            value ="{% url 'darbiniai_app:index' %}" />
-
-    </form>
-
-{% endblock content %}

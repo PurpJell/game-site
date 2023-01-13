@@ -23,16 +23,51 @@ div.footer {
             }
 
 .main_web_title {
-    clear: both;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: cursive;
-    font-size: 3em;
-    letter-spacing: 0.3em;
-    text-shadow: 0 0 0.5em;
-
+    font-family: 'LIBRARY 3 AM', sans-serif;
+    color: #fff;
+    text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #0fa,
+      0 0 82px #0fa,
+      0 0 92px #0fa,
+      0 0 102px #0fa,
+      0 0 151px #0fa;
+    animation: pulsate 2.5s infinite alternate;
+    font-size: 1.8em;
+    margin-left: 5vw;
 }
+
+@keyframes pulsate {
+    
+    100% {
+  
+        text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #0fa,
+        0 0 80px #0fa,
+        0 0 90px #0fa,
+        0 0 100px #0fa,
+        0 0 150px #0fa;
+    
+    }
+    
+    0% {
+  
+      text-shadow:
+      0 0 2px #fff,
+      0 0 4px #fff,
+      0 0 6px #fff,
+      0 0 10px #0fa,
+      0 0 45px #0fa,
+      0 0 55px #0fa,
+      0 0 70px #0fa,
+      0 0 80px #0fa;
+    }
+}  
             
 li {
     font-size: 1.6em;
@@ -40,10 +75,16 @@ li {
     color: rgb(96, 96, 244);
     border: currentColor 0.125em solid;
     padding: 0.25em 1em;
-    border-radius: 0.5em;
     text-shadow: 0 0 0.9em rgb(96, 96, 244)(0 0% 100% / 0.3), 0 0 0.9em rgb(96, 96, 244);
     box-shadow: inset 0 0 0.5em 0 rgb(96, 96, 244), 0 0 0.5em 0 rgb(96, 96, 244);    
 }
+li:first-child {
+    border-top: 5px solid white;
+}
+li:last-child {
+    
+}
+
             
 li.game_1_text {
     text-decoration: none;
@@ -68,6 +109,12 @@ ul {
 
 .column_side {
     position: center;
+}
+
+a.add {
+    color: white;
+    font-family: cursive;
+    font-size: 1.3em;
 }
 
     
@@ -96,7 +143,7 @@ ul {
         </p>
     </div>
     {% if user.is_superuser or user.is_admin %}
-    <a href="{% url 'darbiniai_app:new_leaderboard' %}" class="Game_1_text">&emsp;&emsp;&emsp;Add a new leaderboard</a>
+    <a class="add" href="{% url 'darbiniai_app:new_leaderboard' %}" class="Game_1_text">&emsp;&emsp;&emsp;Add a new leaderboard</a>
     {% endif %}
     <br>     
     <br>     

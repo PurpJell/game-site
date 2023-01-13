@@ -22,6 +22,16 @@ div.main_header {
 li { 
     font-size: 1.6em;
     font-family: cursive;
+    list-style-color: white;
+        }
+
+        li::before {
+            content: "\2022"; 
+            color: white; 
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em;
         }
 
 .addgame {
@@ -32,6 +42,7 @@ li {
 p{
     font-size: 1.6em;
     font-family: cursive;
+    color: white;
 }
     
     </style>
