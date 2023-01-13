@@ -31,7 +31,9 @@
                     max-width: 20vw;
                     transform: translate(3vw);
                     padding: 10px;
-                    border: 2px solid black;
+                    border: 2px solid var(--clr-neon);
+                    box-shadow: inset 0 0 0.5em var(--clr-neon),
+                    0 0 0.25em var(--clr-neon);
                     border-radius: 7px;
 
                 }
@@ -43,7 +45,7 @@
 
 {% block content %}
 
-<br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
 <div class="container">
     <p>Add new entry:</p>
     
@@ -51,7 +53,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <br>
-        <button name="submit">Add entry</button>
+        <button>Add entry</button>
     </form>
 </div>
 
