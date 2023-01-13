@@ -1,6 +1,17 @@
-{% extends 'darbiniai_app/base.html' %}
+<DOCTYPE html>
+    <html>
+        <head>
+            <style>
+                p {
+                    color: white;
+                }
+            </style>
+        </head>
+        <body>
+            {% extends 'darbiniai_app/base.html' %}
 
 {% block content %}
+<br><br><br><br><br><br><br>
 
     <form method="post" action="{% url 'users:register' %}">
         {% csrf_token %}
@@ -11,3 +22,5 @@
     </form>
 
     {% endblock content %}
+        </body>
+    </html>

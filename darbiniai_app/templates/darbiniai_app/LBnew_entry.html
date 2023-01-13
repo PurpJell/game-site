@@ -1,15 +1,41 @@
-{% extends "darbiniai_app/base.html" %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+p{
+    color: lightgrey;
+}
+.p {
+    text-decoration: none;
+    color: white;
+    font-family: cursive;
+    font-size: 1.2em;
+}
 
-{% block content %}
+a{
+    text-decoration: none; 
+}
 
-    <p><a href="{% url 'darbiniai_app:entries' leaderboard.gameName %}">{{ leaderboard }}</a></p>
+.box {
+    margin-top: 10vh;
+}
+        </style>
+    </head>
+    <body>
+        {% extends "darbiniai_app/base.html" %}
 
-    <p>Add new entry:</p>
-
-    <form action="{% url 'darbiniai_app:LBnew_entry' leaderboard.gameName %}" method='post'>
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button name="submit">Add entry</button>
-    </form>
-
-{% endblock content %}
+        {% block content %}
+        <div class="box">
+            <p class="p"><a href="{% url 'darbiniai_app:entries' leaderboard.gameName %}">{{ leaderboard }}</a></p>
+            <p class="p">Add new entry:</p>
+        
+            <form action="{% url 'darbiniai_app:LBnew_entry' leaderboard.gameName %}" method='post'>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button name="submit">Add entry</button>
+            </form>
+        </div>
+        
+        {% endblock content %}        
+    </body>
+</html>

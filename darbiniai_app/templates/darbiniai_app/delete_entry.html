@@ -6,6 +6,13 @@
         p {
             font-size: 1.6em;
             font-family: cursive;
+            color: white;
+        }
+
+        .del/can {
+            border: 1;
+            border-radius: 4;
+            background-color: black;
         }
     </style>
 </head>
@@ -19,11 +26,11 @@
     <form action="{% url 'darbiniai_app:delete_entry' entry_id %}" method='post'>
         {% csrf_token %}
         {{ form.as_p }}
-        <button name="submit">Delete</button>
+        <button class="del/can">Delete</button>
     </form>
     <br>
     <form action="{% url 'darbiniai_app:entries' leaderboard %}" method='get'>
-        <button type="submit">Cancel</button>
+        <button class="del/can">Cancel</button>
     </form>
 
 

@@ -5,22 +5,7 @@
             p {
                 font-family: cursive;
                 font-size: 1.6em;
-                text-align: center;
-            }
-
-            form {
-                text-align: center;
-            }
-
-            button {
-                font-size: 1.5em;
-                border-radius: 0.2em;
-                background-image: linear-gradient(0deg,rgb(134, 76, 193),rgb(247, 73, 238));
-            }
-
-            .username{
-                color: red;
-                -webkit-text-stroke: 0.05em black;
+                color: white;
             }
 
         </style>
@@ -31,9 +16,8 @@
         {% block content %}
 
         
-        <br><br><br><br><br><br><br>
-        
-            <p>Delete account <b class="username">{{ user.username }}</b>? (All of your entries will be lost <b>forever</b>!)</p>
+        <br><br><br><br><br>
+            <p>Delete account {{ user.username }}? (All of your entries will be lost forever)!</p>
         
             <form action="{% url 'darbiniai_app:delete_account' %}" method='post'>
                 {% csrf_token %}
