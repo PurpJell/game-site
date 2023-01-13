@@ -1,13 +1,29 @@
 <DOCTYPE! html>
     <html>
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
     <style>
     
 @import url('https://fonts.cdnfonts.com/css/library-3-am');
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
 
 * { 
     margin: 0px ;
     box-sizing: border-box;
+  }
+
+  :root {
+    --clr-neon: hsl(317 100% 54%);
+    --clr-bg: hsl(323 21% 16%);
+  }
+
+  -webkit-scrollbar-track {
+    background: var(--clr-bg);
+  }
+  -webkit-scrollbar-thumb {
+    background: var(--clr-neon);
   }
 
 body {
@@ -20,44 +36,47 @@ body {
 
 .Header_links {
     float: left;
-    font-family: cursive;
+    font-family: "Balsamiq sans";
+    font-weight: bold;
     font-size: 0.8em;
-    border: 1px solid silver;
-    border-radius: 6px;
     letter-spacing: 0.2em;
     padding: 1em;
     margin: 1em;
-    background:linear-gradient(to bottom right,rgba(63,81,181,1) 0%, rgba(171,71,188 ,1) 70%);
-    box-shadow: 1px 1px 30px rgba(81,45,168 ,1);
+    display: inline-block;
+    border: var(--clr-neon) 0.15em solid;
+    border-radius: 0.25em;
+    box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
 } 
-.Header_links:hover {
-    filter: drop-shadow(2px 2px 2px #f09);
-    background: transparent;
+
+.Header_links:hover, .Header_links_2:hover {
+    background: var(--clr-neon);
+    box-shadow: 0 0 3em 0 var(--clr-neon)
+}
+.Links_text:hover {
+    color: var(--clr-bg);
 }
 
 
 .Links_text {
-    
+    font-size: 1rem;
     text-decoration: none;
-    color: white;
-    border-radius: 1em;
+    color: var(--clr-neon);
+    padding: 0.25em 1.2em;
+    
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--clr-neon);
 }
 
 .Header_links_2 {
     float: right;
-    font-family: cursive;
+    font-family: "Balsamiq sans";
     font-size: 0.8em;
-    border: 1px solid silver;
-    border-radius: 6px;
     letter-spacing: 0.2em;
     padding: 1em;
     margin: 1em;
-    background:linear-gradient( to bottom right,rgba(63,81,181,1) 0%, rgba(171,71,188 ,1) 70%);
-    box-shadow: 1px 1px 30px rgba(81,45,168 ,1);
-}
-.Header_links_2:hover {
-    filter: drop-shadow(2px 2px 2px #f09);
-    background: transparent;
+    display: inline-block;
+    border: var(--clr-neon) 0.15em solid;
+    border-radius: 0.25em;
+    box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
 }
 
 #game_b {
@@ -91,7 +110,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family:cursive;
+    font-family: cursive;
     font-size: 1em;
     background-image: linear-gradient(110deg,rgb(128, 0, 214),rgb(255, 0, 242));
     border-radius: 1em;
@@ -109,7 +128,7 @@ body {
 
 .login_button {
     float: center;
-    font-family:cursive;
+    font-family: cursive;
     font-size: 1em;
     background-image: linear-gradient(110deg,blue,red);
     border-radius: 1em;
@@ -141,11 +160,8 @@ a {
 
 .Main_header {
     width: 100%;
-    border: 0px solid black;
     position: fixed;
     display: block;
-    border-bottom: 3px double silver;
-    background-color: #1a1a1a;
 }
 
     
