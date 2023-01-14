@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -130,7 +129,7 @@ p {
     <br>
             
      <div class="login_main">
-    <div class="acc_table">
+    <div class="login_table">
 
     <form action="{% url 'darbiniai_app:change_username' %}" method='get'>
         <button type="submit" class="login_button">
@@ -140,7 +139,7 @@ p {
     </form>
 
     <form action="{% url 'darbiniai_app:change_password' %}" method='get'>
-        <button type="submit" class="acc_button">
+        <button type="submit" class="login_button">
             <div>
             <p class="login_b" ><a class="login_text">Change password</a></p>
         </div></button>
@@ -148,7 +147,7 @@ p {
     </form>
 
     <form action="{% url 'darbiniai_app:delete_account' %}" method='get'>
-        <button type="submit" class="acc_button">
+        <button type="submit" class="login_button">
             <div>
             <p class="login_b" ><a class="login_text">Delete account</a></p>
         </div></button>

@@ -6,12 +6,8 @@
             font-family: cursive;
             font-size: 1.6em;
             color: white;
-            -webkit-text-stroke: 0.06em rgb(37, 35, 35);
+            text-shadow: 0 0 0.5em black;
         }
-        /* a {
-            color: red;
-            -webkit-text-stroke: 0.06em rgb(37, 35, 35);    
-        } */
         li {
             font-family: cursive;
             color: white;
@@ -22,16 +18,7 @@
         .container1 {
             text-shadow: none;
             font-family: cursive;
-            font-size: 0.8em;
-            color: red;
-            -webkit-text-stroke: 0.06em rgb(37, 35, 35);             
-        }
-
-        .newentry {
-        font-size: 1.6em;
-        font-family: cursive;
-        color: red;
-        -webkit-text-stroke: 0.06em rgb(37, 35, 35); 
+            font-size: 1.6em;           
         }
 
         a {
@@ -48,17 +35,18 @@
 <br>
 <br>
 <br>
- 
+<br>
+<br>
+<br>
+<br>
 <div class="container">
     
-<p>&ensp;User: {{username}}</p>
+<p>User: {{username}}</p>
 
-<p>&ensp;Entries:</p>
+<p>Entries:</p>
     </div>
     <div class="container1">
-        {% if user.is_admin or user.is_superuser %}
-    <a class = "newentry" href="{% url 'darbiniai_app:MEnew_entry' %}">&emsp;Add new entry</a>
-        {% endif %}
+    <a href="{% url 'darbiniai_app:MEnew_entry' %}">Add new entry</a>
 </div>
 
 <ul>
@@ -67,10 +55,10 @@
             <p>
                 {{ entry.LB.gameName }}: {{entry.score}}
                 {% if user.is_admin or user.is_superuser %}
-                    <a class="container1" href="{% url 'darbiniai_app:edit_entry' entry.id %}"> Edit</a> &thinsp;
+                    <a href="{% url 'darbiniai_app:edit_entry' entry.id %}"> Edit</a> -
                 {% endif %}
 
-                <a class="container1" href="{% url 'darbiniai_app:delete_entry' entry.id %}"> Delete</a>
+                <a href="{% url 'darbiniai_app:delete_entry' entry.id %}"> Delete</a>
             </p>
         </li>
     {% empty %}
