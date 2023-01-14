@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 # modeliai yra kaip atskiri tables/objektai database
 class Leaderboard(models.Model):
 
-    gameName = models.CharField(max_length=100) # PK
+    gameName = models.CharField(max_length=25) # PK
     
     date_added = models.DateTimeField(auto_now_add=True) # when this leaderboard was added
 
@@ -83,7 +83,7 @@ class AuthUser(models.Model):
     password = models.CharField(max_length=128)
     last_login = models.DateTimeField(blank=True, null=True)
     is_superuser = models.BooleanField()
-    username = models.CharField(unique=True, max_length=150)
+    username = models.CharField(unique=True, max_length=20)
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     email = models.CharField(max_length=254)
@@ -143,7 +143,7 @@ class DarbiniaiAppGame(models.Model):
 
 class DarbiniaiAppLeaderboard(models.Model):
     id = models.BigAutoField(primary_key=True)
-    gamename = models.CharField(db_column='gameName', max_length=100)  # Field name made lowercase.
+    gamename = models.CharField(db_column='gameName', max_length=25)  # Field name made lowercase.
     date_added = models.DateTimeField()
 
     class Meta:

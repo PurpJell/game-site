@@ -44,10 +44,12 @@
 <p>User: {{username}}</p>
 
 <p>Entries:</p>
+{% if user.is_admin or user.is_superuser %}
     </div>
     <div class="container1">
     <a href="{% url 'darbiniai_app:MEnew_entry' %}">Add new entry</a>
 </div>
+{% endif %}
 
 <ul>
     {% for entry in myEntries %}
