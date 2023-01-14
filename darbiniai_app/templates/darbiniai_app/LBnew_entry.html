@@ -12,21 +12,20 @@ p{
     font-size: 1.2em;
 }
 
-a{
-    text-decoration: none; 
+.name {
+    font-size: 1.7em;
+    color: var(--clr-neon);
 }
 
-.box {
-    margin-top: 10vh;
-}
+
         </style>
     </head>
     <body>
         {% extends "darbiniai_app/base.html" %}
 
         {% block content %}
-        <div class="box">
-            <p class="p"><a href="{% url 'darbiniai_app:entries' leaderboard.gameName %}">{{ leaderboard }}</a></p>
+        <br><br><br><br>
+            <p class="p"><a class="name" href="{% url 'darbiniai_app:entries' leaderboard.gameName %}">{{ leaderboard }}</a></p>
             <p class="p">Add new entry:</p>
         
             <form action="{% url 'darbiniai_app:LBnew_entry' leaderboard.gameName %}" method='post'>
@@ -34,7 +33,6 @@ a{
                 {{ form.as_p }}
                 <button name="submit">Add entry</button>
             </form>
-        </div>
         
         {% endblock content %}        
     </body>
